@@ -1,0 +1,189 @@
+#!/bin/sh
+
+__BITBAKE_LAST_LINE=0
+
+# Emit a useful diagnostic if something fails:
+bb_sh_exit_handler() {
+    ret=$?
+    if [ "$ret" != 0 ]; then
+        echo "WARNING: exit code $ret from a shell command."
+    fi
+    exit $ret
+}
+
+bb_bash_exit_handler() {
+    ret=$?
+    { set +x; } > /dev/null
+    trap "" DEBUG
+    if [ "$ret" != 0 ]; then
+        echo "WARNING: ${BASH_SOURCE[0]}:${__BITBAKE_LAST_LINE} exit $ret from '$1'"
+
+        echo "WARNING: Backtrace (BB generated script): "
+        for i in $(seq 1 $((${#FUNCNAME[@]} - 1))); do
+            if [ "$i" -eq 1 ]; then
+                echo -e "	#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${__BITBAKE_LAST_LINE}"
+            else
+                echo -e "	#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${BASH_LINENO[$((i-1))]}"
+            fi
+        done
+    fi
+    exit $ret
+}
+
+bb_bash_debug_handler() {
+    local line=${BASH_LINENO[0]}
+    # For some reason the DEBUG trap trips with lineno=1 when scripts exit; ignore it
+    if [ "$line" -eq 1 ]; then
+        return
+    fi
+
+    # Track the line number of commands as they execute. This is so we can have access to the failing line number
+    # in the EXIT trap. See http://gnu-bash.2382.n7.nabble.com/trap-echo-quot-trap-exit-on-LINENO-quot-EXIT-gt-wrong-linenumber-td3666.html
+    if [ "${FUNCNAME[1]}" != "bb_bash_exit_handler" ]; then
+        __BITBAKE_LAST_LINE=$line
+    fi
+}
+
+case $BASH_VERSION in
+"") trap 'bb_sh_exit_handler' 0
+    set -e
+    ;;
+*)  trap 'bb_bash_exit_handler "$BASH_COMMAND"' 0
+    trap '{ bb_bash_debug_handler; } 2>/dev/null' DEBUG
+    set -e
+    shopt -s extdebug
+    ;;
+esac
+export AR="arm-poky-linux-gnueabi-gcc-ar"
+export ARCH="arm"
+export AS="arm-poky-linux-gnueabi-as "
+export BUILD_AR="ar"
+export BUILD_AS="as "
+export BUILD_CC="gcc "
+export BUILD_CCLD="gcc "
+export BUILD_CFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include -O2 -pipe"
+export BUILD_CPP="gcc  -E"
+export BUILD_CPPFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include"
+export BUILD_CXX="g++ "
+export BUILD_CXXFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include -O2 -pipe"
+export BUILD_FC="gfortran "
+export BUILD_LD="ld "
+export BUILD_LDFLAGS="-L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2"
+export BUILD_NM="nm"
+export BUILD_RANLIB="ranlib -D"
+export BUILD_STRIP="strip"
+export CC="arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CCLD="arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native= "
+export CMDLINE_CONSOLE="console=ttyS0"
+export CPP="arm-poky-linux-gnueabi-gcc -E --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security"
+export CPPFLAGS=""
+export CROSS_COMPILE="arm-poky-linux-gnueabi-"
+export CXX="arm-poky-linux-gnueabi-g++  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CXXFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=  -fvisibility-inlines-hidden"
+export FC="arm-poky-linux-gnueabi-gfortran  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export GIT_CEILING_DIRECTORIES="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0"
+export HOME="/home/lemageoire"
+export KBUILD_BUILD_HOST="oe-host"
+export KBUILD_BUILD_USER="oe-user"
+export KBUILD_BUILD_VERSION="1"
+export LC_ALL="en_US.UTF-8"
+export LD="arm-poky-linux-gnueabi-ld --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot "
+export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=  -Wl,-z,relro,-z,now"
+export LOGNAME="lemageoire"
+export MAKE="make"
+export NM="arm-poky-linux-gnueabi-gcc-nm"
+export OBJCOPY="arm-poky-linux-gnueabi-objcopy"
+export OBJDUMP="arm-poky-linux-gnueabi-objdump"
+export OMP_NUM_THREADS="8"
+export OS="linux-gnueabi"
+export PATH="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/lemageoire/fsl-community-bsp/sources/poky/scripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/bin/crossscripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/bin:/home/lemageoire/fsl-community-bsp/sources/poky/bitbake/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools"
+export PERL_HASH_SEED="0"
+export PKG_CONFIG_DIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig"
+export PKG_CONFIG_DISABLE_UNINSTALLED="yes"
+export PKG_CONFIG_LIBDIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig"
+export PKG_CONFIG_PATH="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/share/pkgconfig"
+export PKG_CONFIG_SYSROOT_DIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export PKG_CONFIG_SYSTEM_INCLUDE_PATH="/usr/include"
+export PKG_CONFIG_SYSTEM_LIBRARY_PATH="/lib:/usr/lib"
+export PSEUDO_DISABLED="1"
+export PSEUDO_UNLOAD="1"
+export PYTHONHASHSEED="0"
+export RANLIB="arm-poky-linux-gnueabi-gcc-ranlib"
+export READELF="arm-poky-linux-gnueabi-readelf"
+unset SHELL
+export SOURCE_DATE_EPOCH="1689355056"
+export STRINGS="arm-poky-linux-gnueabi-strings"
+export STRIP="arm-poky-linux-gnueabi-strip"
+export TZ="UTC"
+export UBOOT_ARCH="arm"
+export USER="lemageoire"
+export base_bindir="/bin"
+export base_libdir="/lib"
+export base_prefix=""
+export base_sbindir="/sbin"
+export bindir="/usr/bin"
+export datadir="/usr/share"
+export docdir="/usr/share/doc"
+export exec_prefix="/usr"
+export includedir="/usr/include"
+export infodir="/usr/share/info"
+export libdir="/usr/lib"
+export libexecdir="/usr/libexec"
+export localstatedir="/var"
+export mandir="/usr/share/man"
+export nonarch_base_libdir="/lib"
+export nonarch_libdir="/usr/lib"
+export oldincludedir="/usr/include"
+export prefix="/usr"
+export sbindir="/usr/sbin"
+export servicedir="/srv"
+export sharedstatedir="/com"
+export sysconfdir="/etc"
+export systemd_system_unitdir="/lib/systemd/system"
+export systemd_unitdir="/lib/systemd"
+export systemd_user_unitdir="/usr/lib/systemd/user"
+
+# line: 73, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/staging.bbclass
+sysroot_stage_all() {
+	sysroot_stage_dirs /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/image /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sysroot-destdir
+}
+
+# line: 59, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/staging.bbclass
+sysroot_stage_dirs() {
+	from="$1"
+	to="$2"
+
+	for dir in ; do
+		sysroot_stage_dir "$from$dir" "$to$dir"
+	done
+
+	# Remove directories we do not care about
+	for dir in      /usr/share/man     /usr/share/doc     /usr/share/info     /usr/share/X11/locale     /usr/share/applications     /usr/share/bash-completion     /usr/share/fonts     /usr/share/gtk-doc/html     /usr/share/installed-tests     /usr/share/locale     /usr/share/pixmaps     /usr/share/terminfo     /usr/lib/linux-fslc/ptest ; do
+		rm -rf "$to$dir"
+	done
+}
+
+# line: 43, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/staging.bbclass
+sysroot_stage_dir() {
+	src="$1"
+	dest="$2"
+	# if the src doesn't exist don't do anything
+	if [ ! -d "$src" ]; then
+		 return
+	fi
+
+	mkdir -p "$dest"
+	rdest=$(realpath --relative-to="$src" "$dest")
+	(
+		cd $src
+		find . -print0 | cpio --null -pdlu $rdest
+	)
+}
+
+sysroot_stage_all
+
+# cleanup
+ret=$?
+trap '' 0
+exit $ret

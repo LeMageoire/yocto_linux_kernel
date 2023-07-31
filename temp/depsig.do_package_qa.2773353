@@ -1,0 +1,5 @@
+OEOuthashBasic
+14
+SSTATE_PKGSPEC=sstate:linux-fslc:imx6qdlsabresd-poky-linux-gnueabi:6.1.38+gitAUTOINC+085682f3fc:r0:imx6qdlsabresd:10:
+task=package_qa
+drwx                                                                                       .

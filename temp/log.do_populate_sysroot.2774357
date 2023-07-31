@@ -1,0 +1,35 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/binutils/binutils-cross_2.38.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/gcc/gcc-cross_11.3.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/bison/bison_3.8.2.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-extended/bc/bc_1.07.1.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kmod/kmod_29.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: []
+NOTE: Skipping as already exists in sysroot: ['binutils-cross-arm', 'gcc-cross-arm', 'quilt-native', 'kern-tools-native', 'bison-native', 'patch-native', 'pkgconfig-native', 'pseudo-native', 'bc-native', 'kmod-native', 'zlib-native', 'libtool-native', 'flex-native', 'mpfr-native', 'xz-native', 'libmpc-native', 'zstd-native', 'linux-libc-headers', 'texinfo-dummy-native', 'gmp-native', 'gnu-config-native', 'readline-native', 'attr-native', 'python3-native', 'gettext-minimal-native', 'm4-native', 'ncurses-native', 'sqlite3-native', 'openssl-native', 'libnsl2-native', 'bzip2-native', 'libtirpc-native', 'gdbm-native', 'util-linux-libuuid-native', 'libffi-native', 'perl-native', 'make-native']
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing python function do_populate_sysroot
+DEBUG: Executing shell function sysroot_stage_all
+DEBUG: Shell function sysroot_stage_all finished
+DEBUG: Executing python function sysroot_strip
+DEBUG: Python function sysroot_strip finished
+DEBUG: Python function do_populate_sysroot finished
+DEBUG: Executing python function do_qa_staging
+NOTE: QA checking staging
+DEBUG: Python function do_qa_staging finished
+DEBUG: Executing python function sstate_task_postfunc
+NOTE: Using umask 0o002 (not 22) for sstate packaging
+DEBUG: Preparing tree /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sysroot-destdir for packaging at /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_sysroot/sysroot-destdir
+DEBUG: Executing python function target_add_sysroot_deps
+DEBUG: Python function target_add_sysroot_deps finished
+DEBUG: Executing python function sstate_hardcode_path
+NOTE: Removing hardcoded paths from sstate package: 'find /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_sysroot/ \( -name "*.la" -o -name "*-config" -o -name "*_config" -o -name "postinst-*" \) -type f | xargs grep -l -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools' | tee /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_sysroot/fixmepath | xargs --no-run-if-empty sed -i -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:FIXMESTAGINGDIRHOST:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:FIXMESTAGINGDIRTARGET:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:FIXME_HOSTTOOLS_DIR:g''
+DEBUG: Python function sstate_hardcode_path finished
+DEBUG: Executing python function sstate_report_unihash
+DEBUG: Reported task f46dd4bbac5f64bf4ffc17ff178bc9e6991f67a3612d2310ffa2e63fd92c0fc9 as unihash f46dd4bbac5f64bf4ffc17ff178bc9e6991f67a3612d2310ffa2e63fd92c0fc9 to unix:///home/lemageoire/fsl-community-bsp/build-openrex/hashserve.sock
+DEBUG: Python function sstate_report_unihash finished
+DEBUG: Executing shell function sstate_create_package
+DEBUG: Shell function sstate_create_package finished
+DEBUG: Executing python function sstate_hardcode_path_unpack
+DEBUG: Python function sstate_hardcode_path_unpack finished
+DEBUG: Executing python function uninative_changeinterp
+DEBUG: Python function uninative_changeinterp finished
+DEBUG: Staging files from /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sysroot-destdir to /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/imx6qdlsabresd/linux-fslc
+DEBUG: Python function sstate_task_postfunc finished

@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: a8293 kernel module; Allegro A8293 SEC driver
+SUMMARY:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: a8293 kernel module
+RDEPENDS:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: kernel-module-a8293
+SECTION: base
+PKG:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: kernel-module-a8293-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/a8293.ko /etc/modules-load.d/a8293.conf /etc/modprobe.d/a8293.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/a8293.ko /etc/modules-load.d/a8293.conf /etc/modprobe.d/a8293.conf
+CONFFILES:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/a8293.conf /etc/modprobe.d/a8293.conf /etc/modules-load.d/a8293.conf /etc/modprobe.d/a8293.conf
+FILES_INFO:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/a8293.ko": 6652}
+pkg_postinst:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-a8293-6.1.38-fslc+g085682f3fc7e: 6652

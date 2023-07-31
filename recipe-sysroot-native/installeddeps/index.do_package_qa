@@ -1,0 +1,11 @@
+TaskDeps: do_package do_packagedata do_install do_transform_kernel do_sizecheck do_compile do_strip do_configure do_kernel_configcheck do_kernel_version_sanity_check do_kernel_link_images do_compile_kernelmodules do_patch do_unpack do_deploy_source_date_epoch do_symlink_kernsrc do_kernel_localversion do_prepare_recipe_sysroot do_kernel_configme do_kernel_metadata do_kernel_checkout do_shared_workdir do_validate_branches do_fetch
+binutils-cross-arm
+flex-native
+gettext-minimal-native
+gnu-config-native
+libtool-native
+m4-native
+pseudo-native
+texinfo-dummy-native
+xz-native
+zlib-native

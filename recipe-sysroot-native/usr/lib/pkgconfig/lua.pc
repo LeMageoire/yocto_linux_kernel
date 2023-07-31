@@ -1,0 +1,9 @@
+libdir=${pcfiledir}/../../../usr/lib
+includedir=${pcfiledir}/../../../usr/include
+
+Name: Lua
+Description: Lua language engine
+Version: 5.4.4
+Requires:
+Libs: -L${libdir} -llua -lm -ldl
+Cflags: -I${includedir}

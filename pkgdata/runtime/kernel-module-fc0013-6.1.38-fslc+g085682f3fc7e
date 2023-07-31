@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: fc0013 kernel module; Fitipower FC0013 silicon tuner driver
+SUMMARY:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: fc0013 kernel module
+RDEPENDS:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: kernel-module-fc0013
+SECTION: base
+PKG:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/fc0013.ko /etc/modules-load.d/fc0013.conf /etc/modprobe.d/fc0013.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0013.ko /etc/modules-load.d/fc0013.conf /etc/modprobe.d/fc0013.conf
+CONFFILES:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/fc0013.conf /etc/modprobe.d/fc0013.conf /etc/modules-load.d/fc0013.conf /etc/modprobe.d/fc0013.conf
+FILES_INFO:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0013.ko": 12956}
+pkg_postinst:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e: 12956

@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: ov2680 kernel module; OV2680 CMOS Image Sensor driver
+SUMMARY:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: ov2680 kernel module
+RDEPENDS:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: kernel-module-ov2680
+SECTION: base
+PKG:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/.debug/ov2680.ko /etc/modules-load.d/ov2680.conf /etc/modprobe.d/ov2680.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov2680.ko /etc/modules-load.d/ov2680.conf /etc/modprobe.d/ov2680.conf
+CONFFILES:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/ov2680.conf /etc/modprobe.d/ov2680.conf /etc/modules-load.d/ov2680.conf /etc/modprobe.d/ov2680.conf
+FILES_INFO:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov2680.ko": 20796}
+pkg_postinst:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e: 20796

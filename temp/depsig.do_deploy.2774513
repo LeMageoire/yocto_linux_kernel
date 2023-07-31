@@ -1,0 +1,20 @@
+OEOuthashBasic
+14
+SSTATE_PKGSPEC=sstate:linux-fslc:imx6qdlsabresd-poky-linux-gnueabi:6.1.38+gitAUTOINC+085682f3fc:r0:imx6qdlsabresd:10:
+task=deploy
+drwx                                                                                       .
+drwx                                                                                       ./deploy-linux-fslc
+-rw-                42470 404c24be4ebdb856acc9155b9fcc8935cf470418709df8e3130c7c5ef67a47f1 ./deploy-linux-fslc/imx6dl-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6dl-sabresd-imx6qdlsabresd.dtb -> imx6dl-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6dl-sabresd.dtb -> imx6dl-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+-rw-                43803 0b476c2575b1f795be8cd754c87ba9e044e353769e348b028c79a2e72e49e176 ./deploy-linux-fslc/imx6q-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6q-sabresd-imx6qdlsabresd.dtb -> imx6q-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6q-sabresd.dtb -> imx6q-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+-rw-                45173 358b677335d6ed01997f052f822f8da82c0909b186cff8ad8281d3fd52f4b689 ./deploy-linux-fslc/imx6qp-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6qp-sabresd-imx6qdlsabresd.dtb -> imx6qp-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+lrwx                                                                                       ./deploy-linux-fslc/imx6qp-sabresd.dtb -> imx6qp-sabresd--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.dtb
+-rw-              2431352 b1fe811e9999e31dba32f6291be3185a070585e60baa9766bd4d51f2dcf541a1 ./deploy-linux-fslc/modules--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.tgz
+lrwx                                                                                       ./deploy-linux-fslc/modules-imx6qdlsabresd.tgz -> modules--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.tgz
+lrwx                                                                                       ./deploy-linux-fslc/zImage -> zImage--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.bin
+-rw-             10565544 7b3966f67fc109d4bd17e7fb5a5fec43742ee78045479b2da2b8fe67e3206bfa ./deploy-linux-fslc/zImage--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.bin
+lrwx                                                                                       ./deploy-linux-fslc/zImage-imx6qdlsabresd.bin -> zImage--6.1.38+git0+085682f3fc-r0-imx6qdlsabresd-20230728012949.bin

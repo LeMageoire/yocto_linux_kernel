@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: mc44s803 kernel module; Freescale MC44S803 silicon tuner driver
+SUMMARY:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: mc44s803 kernel module
+RDEPENDS:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: kernel-module-mc44s803
+SECTION: base
+PKG:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/mc44s803.ko /etc/modules-load.d/mc44s803.conf /etc/modprobe.d/mc44s803.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mc44s803.ko /etc/modules-load.d/mc44s803.conf /etc/modprobe.d/mc44s803.conf
+CONFFILES:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/mc44s803.conf /etc/modprobe.d/mc44s803.conf /etc/modules-load.d/mc44s803.conf /etc/modprobe.d/mc44s803.conf
+FILES_INFO:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mc44s803.ko": 7728}
+pkg_postinst:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e: 7728

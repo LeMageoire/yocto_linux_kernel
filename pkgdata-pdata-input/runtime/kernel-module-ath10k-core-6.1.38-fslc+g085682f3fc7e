@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: ath10k-core kernel module; Core module for Qualcomm Atheros 802.11ac wireless LAN cards.
+SUMMARY:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: ath10k-core kernel module
+RDEPENDS:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e kernel-module-ath-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: kernel-module-ath10k-core
+SECTION: base
+PKG:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/.debug/ath10k_core.ko /etc/modules-load.d/ath10k_core.conf /etc/modprobe.d/ath10k_core.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_core.ko /etc/modules-load.d/ath10k_core.conf /etc/modprobe.d/ath10k_core.conf
+CONFFILES:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/ath10k_core.conf /etc/modprobe.d/ath10k_core.conf /etc/modules-load.d/ath10k_core.conf /etc/modprobe.d/ath10k_core.conf
+FILES_INFO:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_core.ko": 484300}
+pkg_postinst:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e: 484300

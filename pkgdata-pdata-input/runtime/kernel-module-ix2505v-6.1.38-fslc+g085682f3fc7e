@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: ix2505v kernel module; DVB IX2505V tuner driver
+SUMMARY:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: ix2505v kernel module
+RDEPENDS:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: kernel-module-ix2505v
+SECTION: base
+PKG:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/ix2505v.ko /etc/modules-load.d/ix2505v.conf /etc/modprobe.d/ix2505v.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ix2505v.ko /etc/modules-load.d/ix2505v.conf /etc/modprobe.d/ix2505v.conf
+CONFFILES:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/ix2505v.conf /etc/modprobe.d/ix2505v.conf /etc/modules-load.d/ix2505v.conf /etc/modprobe.d/ix2505v.conf
+FILES_INFO:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ix2505v.ko": 8104}
+pkg_postinst:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e: 8104

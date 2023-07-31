@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: si2157 kernel module; Silicon Labs Si2141/Si2146/2147/2148/2157/2158 silicon tuner driver
+SUMMARY:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: si2157 kernel module
+RDEPENDS:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: kernel-module-si2157
+SECTION: base
+PKG:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: kernel-module-si2157-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/si2157.ko /etc/modules-load.d/si2157.conf /etc/modprobe.d/si2157.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/si2157.ko /etc/modules-load.d/si2157.conf /etc/modprobe.d/si2157.conf
+CONFFILES:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/si2157.conf /etc/modprobe.d/si2157.conf /etc/modules-load.d/si2157.conf /etc/modprobe.d/si2157.conf
+FILES_INFO:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/si2157.ko": 19168}
+pkg_postinst:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-si2157-6.1.38-fslc+g085682f3fc7e: 19168

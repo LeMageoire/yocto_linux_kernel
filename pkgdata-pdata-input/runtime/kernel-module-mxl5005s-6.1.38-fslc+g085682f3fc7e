@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: mxl5005s kernel module; MaxLinear MXL5005S silicon tuner driver
+SUMMARY:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: mxl5005s kernel module
+RDEPENDS:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: kernel-module-mxl5005s
+SECTION: base
+PKG:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/mxl5005s.ko /etc/modules-load.d/mxl5005s.conf /etc/modprobe.d/mxl5005s.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5005s.ko /etc/modules-load.d/mxl5005s.conf /etc/modprobe.d/mxl5005s.conf
+CONFFILES:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/mxl5005s.conf /etc/modprobe.d/mxl5005s.conf /etc/modules-load.d/mxl5005s.conf /etc/modprobe.d/mxl5005s.conf
+FILES_INFO:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5005s.ko": 36944}
+pkg_postinst:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e: 36944

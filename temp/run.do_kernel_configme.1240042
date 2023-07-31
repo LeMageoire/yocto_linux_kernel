@@ -1,0 +1,488 @@
+#!/bin/sh
+
+__BITBAKE_LAST_LINE=0
+
+# Emit a useful diagnostic if something fails:
+bb_sh_exit_handler() {
+    ret=$?
+    if [ "$ret" != 0 ]; then
+        echo "WARNING: exit code $ret from a shell command."
+    fi
+    exit $ret
+}
+
+bb_bash_exit_handler() {
+    ret=$?
+    { set +x; } > /dev/null
+    trap "" DEBUG
+    if [ "$ret" != 0 ]; then
+        echo "WARNING: ${BASH_SOURCE[0]}:${__BITBAKE_LAST_LINE} exit $ret from '$1'"
+
+        echo "WARNING: Backtrace (BB generated script): "
+        for i in $(seq 1 $((${#FUNCNAME[@]} - 1))); do
+            if [ "$i" -eq 1 ]; then
+                echo -e "	#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${__BITBAKE_LAST_LINE}"
+            else
+                echo -e "	#$((i)): ${FUNCNAME[$i]}, ${BASH_SOURCE[$((i-1))]}, line ${BASH_LINENO[$((i-1))]}"
+            fi
+        done
+    fi
+    exit $ret
+}
+
+bb_bash_debug_handler() {
+    local line=${BASH_LINENO[0]}
+    # For some reason the DEBUG trap trips with lineno=1 when scripts exit; ignore it
+    if [ "$line" -eq 1 ]; then
+        return
+    fi
+
+    # Track the line number of commands as they execute. This is so we can have access to the failing line number
+    # in the EXIT trap. See http://gnu-bash.2382.n7.nabble.com/trap-echo-quot-trap-exit-on-LINENO-quot-EXIT-gt-wrong-linenumber-td3666.html
+    if [ "${FUNCNAME[1]}" != "bb_bash_exit_handler" ]; then
+        __BITBAKE_LAST_LINE=$line
+    fi
+}
+
+case $BASH_VERSION in
+"") trap 'bb_sh_exit_handler' 0
+    set -e
+    ;;
+*)  trap 'bb_bash_exit_handler "$BASH_COMMAND"' 0
+    trap '{ bb_bash_debug_handler; } 2>/dev/null' DEBUG
+    set -e
+    shopt -s extdebug
+    ;;
+esac
+export AR="arm-poky-linux-gnueabi-gcc-ar"
+export ARCH="arm"
+export AS="arm-poky-linux-gnueabi-as "
+export BUILD_AR="ar"
+export BUILD_AS="as "
+export BUILD_CC="gcc "
+export BUILD_CCLD="gcc "
+export BUILD_CFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include -O2 -pipe"
+export BUILD_CPP="gcc  -E"
+export BUILD_CPPFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include"
+export BUILD_CXX="g++ "
+export BUILD_CXXFLAGS="-isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include -O2 -pipe"
+export BUILD_FC="gfortran "
+export BUILD_LD="ld "
+export BUILD_LDFLAGS="-L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2"
+export BUILD_NM="nm"
+export BUILD_RANLIB="ranlib -D"
+export BUILD_STRIP="strip"
+export CC="arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CCLD="arm-poky-linux-gnueabi-gcc  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native= "
+export CMDLINE_CONSOLE="console=ttyS0"
+export CPP="arm-poky-linux-gnueabi-gcc -E --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security"
+export CPPFLAGS=""
+export CROSS_COMPILE="arm-poky-linux-gnueabi-"
+export CXX="arm-poky-linux-gnueabi-g++  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export CXXFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=  -fvisibility-inlines-hidden"
+export FC="arm-poky-linux-gnueabi-gfortran  -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a9 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export GIT_CEILING_DIRECTORIES="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0"
+export HOME="/home/lemageoire"
+export KBUILD_BUILD_HOST="oe-host"
+export KBUILD_BUILD_USER="oe-user"
+export KBUILD_BUILD_VERSION="1"
+export LC_ALL="en_US.UTF-8"
+export LD="arm-poky-linux-gnueabi-ld --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot "
+export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=  -Wl,-z,relro,-z,now"
+export LOGNAME="lemageoire"
+export MAKE="make"
+export NM="arm-poky-linux-gnueabi-gcc-nm"
+export OBJCOPY="arm-poky-linux-gnueabi-objcopy"
+export OBJDUMP="arm-poky-linux-gnueabi-objdump"
+export OMP_NUM_THREADS="8"
+export OS="linux-gnueabi"
+export PATH="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/lemageoire/fsl-community-bsp/sources/poky/scripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/bin/crossscripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/bin:/home/lemageoire/fsl-community-bsp/sources/poky/bitbake/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools"
+export PERL_HASH_SEED="0"
+export PKG_CONFIG_DIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig"
+export PKG_CONFIG_DISABLE_UNINSTALLED="yes"
+export PKG_CONFIG_LIBDIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig"
+export PKG_CONFIG_PATH="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/lib/pkgconfig:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/share/pkgconfig"
+export PKG_CONFIG_SYSROOT_DIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot"
+export PKG_CONFIG_SYSTEM_INCLUDE_PATH="/usr/include"
+export PKG_CONFIG_SYSTEM_LIBRARY_PATH="/lib:/usr/lib"
+export PSEUDO_DISABLED="1"
+export PSEUDO_UNLOAD="1"
+export PYTHONHASHSEED="0"
+export RANLIB="arm-poky-linux-gnueabi-gcc-ranlib"
+export READELF="arm-poky-linux-gnueabi-readelf"
+unset SHELL
+export SOURCE_DATE_EPOCH="1689355056"
+export STRINGS="arm-poky-linux-gnueabi-strings"
+export STRIP="arm-poky-linux-gnueabi-strip"
+export TZ="UTC"
+export UBOOT_ARCH="arm"
+export USER="lemageoire"
+export base_bindir="/bin"
+export base_libdir="/lib"
+export base_prefix=""
+export base_sbindir="/sbin"
+export bindir="/usr/bin"
+export datadir="/usr/share"
+export docdir="/usr/share/doc"
+export exec_prefix="/usr"
+export includedir="/usr/include"
+export infodir="/usr/share/info"
+export libdir="/usr/lib"
+export libexecdir="/usr/libexec"
+export localstatedir="/var"
+export mandir="/usr/share/man"
+export nonarch_base_libdir="/lib"
+export nonarch_libdir="/usr/lib"
+export oldincludedir="/usr/include"
+export prefix="/usr"
+export sbindir="/usr/sbin"
+export servicedir="/srv"
+export sharedstatedir="/com"
+export sysconfdir="/etc"
+export systemd_system_unitdir="/lib/systemd/system"
+export systemd_unitdir="/lib/systemd"
+export systemd_user_unitdir="/usr/lib/systemd/user"
+
+# line: 424, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/kernel-yocto.bbclass
+do_kernel_configme() {
+	do_kernel_metadata config
+
+	# translate the kconfig_mode into something that merge_config.sh
+	# understands
+	case --alldefconfig in
+		*allnoconfig)
+			config_flags="-n"
+			;;
+		*alldefconfig)
+			config_flags=""
+			;;
+		*)
+			if [ -f /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig ]; then
+				config_flags="-n"
+			fi
+			;;
+	esac
+
+	cd /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git
+
+	meta_dir=$(kgit --meta)
+	configs="$(scc --configs -o ${meta_dir})"
+	if [ $? -ne 0 ]; then
+		bberror "${configs}"
+		bbfatal_log "Could not find configuration queue (${meta_dir}/config.queue)"
+	fi
+
+	CFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=   --sysroot=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot" HOSTCC="gcc  -isystem/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/include -O2 -pipe -L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -L/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2" HOSTCPP="gcc  -E" CC="arm-poky-linux-gnueabi-gcc  -mno-thumb-interwork -marm -fuse-ld=bfd -fmacro-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0=/usr/src/debug/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native=  -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work-shared/imx6qdlsabresd/kernel-source=/usr/src/kernel -fdebug-prefix-map=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work-shared/imx6qdlsabresd/kernel-build-artifacts=/usr/src/kernel" LD="arm-poky-linux-gnueabi-ld.bfd  " ARCH=arm merge_config.sh -O /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/build ${config_flags} ${configs} > ${meta_dir}/cfg/merge_config_build.log 2>&1
+	if [ $? -ne 0 -o ! -f /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/build/.config ]; then
+		bberror "Could not generate a .config for imx6qdlsabresd-standard"
+		if [ 1 -gt 1 ]; then
+			bbfatal_log "`cat ${meta_dir}/cfg/merge_config_build.log`"
+		else
+			bbfatal_log "Details can be found at: /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/${meta_dir}/cfg/merge_config_build.log"
+		fi
+	fi
+
+	if [ ! -z "-fslc" ]; then
+		echo "# Global settings from linux recipe" >> /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/build/.config
+		echo "CONFIG_LOCALVERSION="\"-fslc\" >> /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/build/.config
+	fi
+}
+
+# line: 43, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bberror() {
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bberror $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "ERROR: $*"
+	fi
+}
+
+# line: 66, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bbfatal_log() {
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bbfatal_log $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "ERROR: $*"
+	fi
+	exit 1
+}
+
+# line: 107, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/kernel-yocto.bbclass
+do_kernel_metadata() {
+	set +e
+
+	if [ -n "$1" ]; then
+		mode="$1"
+	else
+		mode="patch"
+	fi
+
+	cd /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git
+	export KMETA=${KMETA}
+
+	bbnote "do_kernel_metadata: for summary/debug, set KCONF_AUDIT_LEVEL > 0"
+
+	# if kernel tools are available in-tree, they are preferred
+	# and are placed on the path before any external tools. Unless
+	# the external tools flag is set, in that case we do nothing.
+	if [ -f "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/scripts/util/configme" ]; then
+		if [ -z "${EXTERNAL_KERNEL_TOOLS}" ]; then
+			PATH=/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/scripts/util:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/lemageoire/fsl-community-bsp/sources/poky/scripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot/usr/bin/crossscripts:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/sbin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/bin:/home/lemageoire/fsl-community-bsp/sources/poky/bitbake/bin:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools
+		fi
+	fi
+
+	# In a similar manner to the kernel itself:
+	#
+	#   defconfig: $(obj)/conf
+	#   ifeq ($(KBUILD_DEFCONFIG),)
+	#	$< --defconfig $(Kconfig)
+	#   else
+	#	@echo "*** Default configuration is based on '$(KBUILD_DEFCONFIG)'"
+	#	$(Q)$< --defconfig=arch/$(SRCARCH)/configs/$(KBUILD_DEFCONFIG) $(Kconfig)
+	#   endif
+	#
+	# If a defconfig is specified via the KBUILD_DEFCONFIG variable, we copy it
+	# from the source tree, into a common location and normalized "defconfig" name,
+	# where the rest of the process will include and incoroporate it into the build
+	#
+	# If the fetcher has already placed a defconfig in WORKDIR (from the SRC_URI),
+	# we don't overwrite it, but instead warn the user that SRC_URI defconfigs take
+	# precendence.
+	#
+	if [ -n "${KBUILD_DEFCONFIG}" ]; then
+		if [ -f "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/arch/arm/configs/${KBUILD_DEFCONFIG}" ]; then
+			if [ -f "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig" ]; then
+				# If the two defconfig's are different, warn that we overwrote the
+				# one already placed in WORKDIR
+				cmp "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig" "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/arch/arm/configs/${KBUILD_DEFCONFIG}"
+				if [ $? -ne 0 ]; then
+					bbdebug 1 "detected SRC_URI or unpatched defconfig in WORKDIR. ${KBUILD_DEFCONFIG} copied over it"
+				fi
+				cp -f /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/arch/arm/configs/${KBUILD_DEFCONFIG} /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig
+			else
+				cp -f /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/arch/arm/configs/${KBUILD_DEFCONFIG} /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig
+			fi
+			in_tree_defconfig="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/defconfig"
+		else
+			bbfatal "A KBUILD_DEFCONFIG '${KBUILD_DEFCONFIG}' was specified, but not present in the source tree (/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/arch/arm/configs/)"
+		fi
+	fi
+
+	if [ "$mode" = "patch" ]; then
+		# was anyone trying to patch the kernel meta data ?, we need to do
+		# this here, since the scc commands migrate the .cfg fragments to the
+		# kernel source tree, where they'll be used later.
+		check_git_config
+		patches=""
+		for p in $patches; do
+		    (
+			cd /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/kernel-meta
+			git am -s $p
+		    )
+		done
+	fi
+
+	sccs_from_src_uri="/home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/defconfig"
+	patches=""
+	feat_dirs=""
+
+	# a quick check to make sure we don't have duplicate defconfigs If
+	# there's a defconfig in the SRC_URI, did we also have one from the
+	# KBUILD_DEFCONFIG processing above ?
+	src_uri_defconfig=$(echo $sccs_from_src_uri | awk '(match($0, "defconfig") != 0) { print $0 }' RS=' ')
+	# drop and defconfig's from the src_uri variable, we captured it just above here if it existed
+	sccs_from_src_uri=$(echo $sccs_from_src_uri | awk '(match($0, "defconfig") == 0) { print $0 }' RS=' ')
+
+	if [ -n "$in_tree_defconfig" ]; then
+		sccs_defconfig=$in_tree_defconfig
+		if [ -n "$src_uri_defconfig" ]; then
+			bbwarn "[NOTE]: defconfig was supplied both via KBUILD_DEFCONFIG and SRC_URI. Dropping SRC_URI defconfig"
+		fi
+	else
+		# if we didn't have an in-tree one, make our defconfig the one
+		# from the src_uri. Note: there may not have been one from the
+		# src_uri, so this can be an empty variable.
+		sccs_defconfig=$src_uri_defconfig
+	fi
+	sccs="$sccs_from_src_uri"
+
+	# check for feature directories/repos/branches that were part of the
+	# SRC_URI. If they were supplied, we convert them into include directives
+	# for the update part of the process
+	for f in ${feat_dirs}; do
+		if [ -d "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/$f/kernel-meta" ]; then
+			includes="$includes -I/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/$f/kernel-meta"
+		elif [ -d "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/../oe-local-files/$f" ]; then
+			includes="$includes -I/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/../oe-local-files/$f"
+	        elif [ -d "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/$f" ]; then
+			includes="$includes -I/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/$f"
+		fi
+	done
+	for s in ${sccs} ${patches}; do
+		sdir=$(dirname $s)
+		includes="$includes -I${sdir}"
+                # if a SRC_URI passed patch or .scc has a subdir of "kernel-meta",
+                # then we add it to the search path
+                if [ -d "${sdir}/kernel-meta" ]; then
+			includes="$includes -I${sdir}/kernel-meta"
+                fi
+	done
+
+	# expand kernel features into their full path equivalents
+	bsp_definition=$(spp ${includes} --find -DKMACHINE=imx6qdlsabresd -DKTYPE=standard)
+	if [ -z "$bsp_definition" ]; then
+		if [ -z "$sccs_defconfig" ]; then
+			bbfatal_log "Could not locate BSP definition for imx6qdlsabresd/standard and no defconfig was provided"
+		fi
+	else
+		# if the bsp definition has "define KMETA_EXTERNAL_BSP t",
+		# then we need to set a flag that will instruct the next
+		# steps to use the BSP as both configuration and patches.
+		grep -q KMETA_EXTERNAL_BSP $bsp_definition
+		if [ $? -eq 0 ]; then
+		    KMETA_EXTERNAL_BSPS="t"
+		fi
+	fi
+	meta_dir=$(kgit --meta)
+
+	KERNEL_FEATURES_FINAL=""
+	if [ -n "${KERNEL_FEATURES}" ]; then
+		for feature in ${KERNEL_FEATURES}; do
+			feature_found=f
+			for d in $includes; do
+				path_to_check=$(echo $d | sed 's/^-I//')
+				if [ "$feature_found" = "f" ] && [ -e "$path_to_check/$feature" ]; then
+				    feature_found=t
+				fi
+			done
+			if [ "$feature_found" = "f" ]; then
+				if [ -n "${KERNEL_DANGLING_FEATURES_WARN_ONLY}" ]; then
+				    bbwarn "Feature '$feature' not found, but KERNEL_DANGLING_FEATURES_WARN_ONLY is set"
+				    bbwarn "This may cause runtime issues, dropping feature and allowing configuration to continue"
+				else
+				    bberror "Feature '$feature' not found, this will cause configuration failures."
+				    bberror "Check the SRC_URI for meta-data repositories or directories that may be missing"
+				    bbfatal_log "Set KERNEL_DANGLING_FEATURES_WARN_ONLY to ignore this issue"
+				fi
+			else
+				KERNEL_FEATURES_FINAL="$KERNEL_FEATURES_FINAL $feature"
+			fi
+		done
+        fi
+
+	if [ "$mode" = "config" ]; then
+		# run1: pull all the configuration fragments, no matter where they come from
+		elements="`echo -n ${bsp_definition} $sccs_defconfig ${sccs} ${patches} $KERNEL_FEATURES_FINAL`"
+		if [ -n "${elements}" ]; then
+			echo "${bsp_definition}" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/${meta_dir}/bsp_definition
+			scc --force -o /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/${meta_dir}:cfg,merge,meta ${includes} $sccs_defconfig $bsp_definition $sccs $patches $KERNEL_FEATURES_FINAL
+			if [ $? -ne 0 ]; then
+				bbfatal_log "Could not generate configuration queue for imx6qdlsabresd."
+			fi
+		fi
+	fi
+
+	# if KMETA_EXTERNAL_BSPS has been set, or it has been detected from
+	# the bsp definition, then we inject the bsp_definition into the
+	# patch phase below.  we'll piggy back on the sccs variable.
+	if [ -n "${KMETA_EXTERNAL_BSPS}" ]; then
+		sccs="${bsp_definition} ${sccs}"
+	fi
+
+	if [ "$mode" = "patch" ]; then
+		# run2: only generate patches for elements that have been passed on the SRC_URI
+		elements="`echo -n ${sccs} ${patches} $KERNEL_FEATURES_FINAL`"
+		if [ -n "${elements}" ]; then
+			scc --force -o /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/git/${meta_dir}:patch --cmds patch ${includes} ${sccs} ${patches} $KERNEL_FEATURES_FINAL
+			if [ $? -ne 0 ]; then
+				bbfatal_log "Could not generate configuration queue for imx6qdlsabresd."
+			fi
+		fi
+	fi
+
+	if [ 1 -gt 0 ]; then
+		bbnote "kernel meta data summary for imx6qdlsabresd (standard):"
+		bbnote "======================================================================"
+		if [ -n "${KMETA_EXTERNAL_BSPS}" ]; then
+			bbnote "Non kernel-cache (external) bsp"
+		fi
+		bbnote "BSP entry point / definition: $bsp_definition"
+		if [ -n "$in_tree_defconfig" ]; then
+			bbnote "KBUILD_DEFCONFIG: ${KBUILD_DEFCONFIG}"
+		fi
+		bbnote "Fragments from SRC_URI: $sccs_from_src_uri"
+		bbnote "KERNEL_FEATURES: $KERNEL_FEATURES_FINAL"
+		bbnote "Final scc/cfg list: $sccs_defconfig $bsp_definition $sccs $KERNEL_FEATURES_FINAL"
+	fi
+
+	set -e
+}
+
+# line: 81, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bbdebug() {
+	USAGE='Usage: bbdebug [123] "message"'
+	if [ $# -lt 2 ]; then
+		bbfatal "$USAGE"
+	fi
+
+	# Strip off the debug level and ensure it is an integer
+	DBGLVL=$1; shift
+	NONDIGITS=$(echo "$DBGLVL" | tr -d "[:digit:]")
+	if [ "$NONDIGITS" ]; then
+		bbfatal "$USAGE"
+	fi
+
+	# All debug output is printed to the logs
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bbdebug $DBGLVL $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "DEBUG: $*"
+	fi
+}
+
+# line: 54, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bbfatal() {
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bbfatal $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "ERROR: $*"
+	fi
+	exit 1
+}
+
+# line: 21, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bbnote() {
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bbnote $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "NOTE: $*"
+	fi
+}
+
+# line: 32, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/logging.bbclass
+bbwarn() {
+	if [ -p /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042 ] ; then
+		printf "%b\0" "bbwarn $*" > /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042
+	else
+		echo "WARNING: $*"
+	fi
+}
+
+# line: 320, file: /home/lemageoire/fsl-community-bsp/sources/poky/meta/classes/utils.bbclass
+check_git_config() {
+	if ! git config user.email > /dev/null ; then
+		git config --local user.email "oe.patch@oe"
+	fi
+	if ! git config user.name > /dev/null ; then
+		git config --local user.name "OpenEmbedded"
+	fi
+}
+
+cd '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/build'
+do_kernel_configme
+
+# cleanup
+ret=$?
+trap '' 0
+exit $ret

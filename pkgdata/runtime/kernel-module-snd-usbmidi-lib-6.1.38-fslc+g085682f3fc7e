@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: snd-usbmidi-lib kernel module; USB Audio/MIDI helper module
+SUMMARY:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: snd-usbmidi-lib kernel module
+RDEPENDS:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: kernel-module-snd-usbmidi-lib
+SECTION: base
+PKG:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/.debug/snd-usbmidi-lib.ko /etc/modules-load.d/snd-usbmidi-lib.conf /etc/modprobe.d/snd-usbmidi-lib.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usbmidi-lib.ko /etc/modules-load.d/snd-usbmidi-lib.conf /etc/modprobe.d/snd-usbmidi-lib.conf
+CONFFILES:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/snd-usbmidi-lib.conf /etc/modprobe.d/snd-usbmidi-lib.conf /etc/modules-load.d/snd-usbmidi-lib.conf /etc/modprobe.d/snd-usbmidi-lib.conf
+FILES_INFO:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usbmidi-lib.ko": 35324}
+pkg_postinst:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e: 35324

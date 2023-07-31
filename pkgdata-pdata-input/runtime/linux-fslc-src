@@ -1,0 +1,13 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:linux-fslc-src: Linux kernel based on mainline kernel used by FSL Community BSP in order to provide support for some backported features and fixes, or because it was applied in linux-next and takes some time to become part of a stable version, or because it is not applicable for upstreaming.  This package contains sources for debugging purposes.
+SUMMARY:linux-fslc-src: FSL Community BSP Linux mainline based kernel with backported features and fixes - Source files
+SECTION:linux-fslc-src: devel
+PKG:linux-fslc-src: linux-fslc-src
+FILES:linux-fslc-src: /usr/src/debug
+FILES_INFO:linux-fslc-src: {}
+PKGSIZE:linux-fslc-src: 0

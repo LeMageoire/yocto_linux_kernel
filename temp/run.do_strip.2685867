@@ -1,0 +1,16 @@
+def do_strip(d):
+    import shutil
+
+    strip = d.getVar('STRIP')
+    extra_sections = d.getVar('KERNEL_IMAGE_STRIP_EXTRA_SECTIONS')
+    kernel_image = d.getVar('B') + "/" + d.getVar('KERNEL_OUTPUT_DIR') + "/vmlinux"
+
+    if (extra_sections and kernel_image.find(d.getVar('KERNEL_IMAGEDEST') + '/vmlinux') != -1):
+        kernel_image_stripped = kernel_image + ".stripped"
+        shutil.copy2(kernel_image, kernel_image_stripped)
+        oe.package.runstrip((kernel_image_stripped, 8, strip, extra_sections))
+        bb.debug(1, "KERNEL_IMAGE_STRIP_EXTRA_SECTIONS is set, stripping sections: " + \
+            extra_sections)
+
+do_strip(d)
+

@@ -1,0 +1,12 @@
+def check_oldest_kernel(d):
+    oldest_kernel = d.getVar('OLDEST_KERNEL')
+    kernel_version = d.getVar('KERNEL_VERSION')
+    tclibc = d.getVar('TCLIBC')
+    if tclibc == 'glibc':
+        kernel_version = kernel_version.split('-', 1)[0]
+        if oldest_kernel and kernel_version:
+            if bb.utils.vercmp_string(kernel_version, oldest_kernel) < 0:
+                bb.warn('%s: OLDEST_KERNEL is "%s" but the version of the kernel you are building is "%s" - therefore %s as built may not be compatible with this kernel. Either set OLDEST_KERNEL to an older version, or build a newer kernel.' % (d.getVar('PN'), oldest_kernel, kernel_version, tclibc))
+
+check_oldest_kernel(d)
+

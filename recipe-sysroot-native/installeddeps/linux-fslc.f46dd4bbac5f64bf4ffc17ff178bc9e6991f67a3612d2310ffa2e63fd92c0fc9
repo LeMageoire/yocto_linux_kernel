@@ -1,0 +1,3 @@
+recipe-sysroot/sysroot-providers/virtual_kernel
+recipe-sysroot/sysroot-providers/linux-fslc
+recipe-sysroot/sysroot-providers/

@@ -1,0 +1,12 @@
+recipe-sysroot-native/sysroot-providers/util-linux-libuuid-native
+recipe-sysroot-native/usr/include/uuid/uuid.h
+recipe-sysroot-native/usr/lib/libuuid.so.1
+recipe-sysroot-native/usr/lib/libuuid.so
+recipe-sysroot-native/usr/lib/libuuid.so.1.3.0
+recipe-sysroot-native/usr/lib/pkgconfig/uuid.pc
+recipe-sysroot-native/usr/lib/pkgconfig/
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/include/uuid/
+recipe-sysroot-native/usr/include/
+recipe-sysroot-native/usr/lib/
+recipe-sysroot-native/usr/

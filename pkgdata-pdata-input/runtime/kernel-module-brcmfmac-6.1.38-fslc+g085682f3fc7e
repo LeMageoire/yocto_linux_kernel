@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: brcmfmac kernel module; Broadcom 802.11 wireless LAN fullmac driver.
+SUMMARY:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: brcmfmac kernel module
+RDEPENDS:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e kernel-module-brcmutil-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: kernel-module-brcmfmac
+SECTION: base
+PKG:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/.debug/brcmfmac.ko /etc/modules-load.d/brcmfmac.conf /etc/modprobe.d/brcmfmac.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko /etc/modules-load.d/brcmfmac.conf /etc/modprobe.d/brcmfmac.conf
+CONFFILES:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/brcmfmac.conf /etc/modprobe.d/brcmfmac.conf /etc/modules-load.d/brcmfmac.conf /etc/modprobe.d/brcmfmac.conf
+FILES_INFO:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko": 291716}
+pkg_postinst:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e: 291716

@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: imx-sdma kernel module; i.MX SDMA driver
+SUMMARY:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: imx-sdma kernel module
+RDEPENDS:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: kernel-module-imx-sdma
+SECTION: base
+PKG:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/.debug/imx-sdma.ko /etc/modules-load.d/imx-sdma.conf /etc/modprobe.d/imx-sdma.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/imx-sdma.ko /etc/modules-load.d/imx-sdma.conf /etc/modprobe.d/imx-sdma.conf
+CONFFILES:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/imx-sdma.conf /etc/modprobe.d/imx-sdma.conf /etc/modules-load.d/imx-sdma.conf /etc/modprobe.d/imx-sdma.conf
+FILES_INFO:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/imx-sdma.ko": 32676}
+pkg_postinst:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e: 32676

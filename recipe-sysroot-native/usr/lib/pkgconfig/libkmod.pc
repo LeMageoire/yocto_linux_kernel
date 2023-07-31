@@ -1,0 +1,11 @@
+prefix=${pcfiledir}/../../../usr
+exec_prefix=${pcfiledir}/../../../usr
+libdir=${pcfiledir}/../../../usr/lib
+includedir=${pcfiledir}/../../../usr/include
+
+Name: libkmod
+Description: Library to deal with kernel modules
+Version: 29
+Libs: -L${libdir} -lkmod
+Libs.private:  -L${pcfiledir}/../../../usr/lib/pkgconfig/../../../usr/lib -llzma -L${pcfiledir}/../../../usr/lib/pkgconfig/../../../usr/lib -lz
+Cflags: -I${includedir}

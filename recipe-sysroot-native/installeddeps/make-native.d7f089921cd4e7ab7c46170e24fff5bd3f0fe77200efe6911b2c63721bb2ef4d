@@ -1,0 +1,9 @@
+recipe-sysroot-native/sysroot-providers/make-native
+recipe-sysroot-native/sysroot-providers/virtual_make-native
+recipe-sysroot-native/usr/bin/make
+recipe-sysroot-native/usr/include/gnumake.h
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/include/
+recipe-sysroot-native/usr/share/
+recipe-sysroot-native/usr/bin/
+recipe-sysroot-native/usr/

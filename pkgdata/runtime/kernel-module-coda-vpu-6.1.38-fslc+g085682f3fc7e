@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: coda-vpu kernel module; Coda multi-standard codec V4L2 driver
+SUMMARY:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: coda-vpu kernel module
+RDEPENDS:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e kernel-module-imx-vdoa-6.1.38-fslc+g085682f3fc7e kernel-module-v4l2-jpeg-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: kernel-module-coda-vpu
+SECTION: base
+PKG:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/.debug/coda-vpu.ko /etc/modules-load.d/coda-vpu.conf /etc/modprobe.d/coda-vpu.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/coda-vpu.ko /etc/modules-load.d/coda-vpu.conf /etc/modprobe.d/coda-vpu.conf
+CONFFILES:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/coda-vpu.conf /etc/modprobe.d/coda-vpu.conf /etc/modules-load.d/coda-vpu.conf /etc/modprobe.d/coda-vpu.conf
+FILES_INFO:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/coda-vpu.ko": 140740}
+pkg_postinst:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e: 140740

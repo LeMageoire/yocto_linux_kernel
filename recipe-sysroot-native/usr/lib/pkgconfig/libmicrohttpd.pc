@@ -1,0 +1,14 @@
+prefix=${pcfiledir}/../../../usr
+exec_prefix=${pcfiledir}/../../../usr
+libdir=${pcfiledir}/../../../usr/lib
+includedir=${pcfiledir}/../../../usr/include
+
+Name: libmicrohttpd
+Description: A library for creating an embedded HTTP server
+Version: 0.9.76
+Requires:
+Requires.private: 
+Conflicts:
+Libs: -L${libdir} -lmicrohttpd
+Libs.private: -lgnutls -lpthread 
+Cflags: -I${includedir}

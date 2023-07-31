@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: tea5767 kernel module; Philips TEA5767 FM tuner driver
+SUMMARY:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: tea5767 kernel module
+RDEPENDS:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: kernel-module-tea5767
+SECTION: base
+PKG:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/tea5767.ko /etc/modules-load.d/tea5767.conf /etc/modprobe.d/tea5767.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5767.ko /etc/modules-load.d/tea5767.conf /etc/modprobe.d/tea5767.conf
+CONFFILES:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/tea5767.conf /etc/modprobe.d/tea5767.conf /etc/modules-load.d/tea5767.conf /etc/modprobe.d/tea5767.conf
+FILES_INFO:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5767.ko": 11348}
+pkg_postinst:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e: 11348

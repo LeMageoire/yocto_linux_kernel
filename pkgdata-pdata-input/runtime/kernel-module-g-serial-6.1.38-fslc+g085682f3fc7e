@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: g-serial kernel module; Gadget Serial v2.4
+SUMMARY:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: g-serial kernel module
+RDEPENDS:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: kernel-module-g-serial
+SECTION: base
+PKG:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/.debug/g_serial.ko /etc/modules-load.d/g_serial.conf /etc/modprobe.d/g_serial.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_serial.ko /etc/modules-load.d/g_serial.conf /etc/modprobe.d/g_serial.conf
+CONFFILES:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/g_serial.conf /etc/modprobe.d/g_serial.conf /etc/modules-load.d/g_serial.conf /etc/modprobe.d/g_serial.conf
+FILES_INFO:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_serial.ko": 12128}
+pkg_postinst:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e: 12128

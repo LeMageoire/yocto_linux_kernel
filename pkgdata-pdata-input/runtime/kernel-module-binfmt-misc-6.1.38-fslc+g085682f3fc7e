@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: binfmt-misc kernel module
+SUMMARY:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: binfmt-misc kernel module
+RDEPENDS:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: kernel-module-binfmt-misc
+SECTION: base
+PKG:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/.debug/binfmt_misc.ko /etc/modules-load.d/binfmt_misc.conf /etc/modprobe.d/binfmt_misc.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/binfmt_misc.ko /etc/modules-load.d/binfmt_misc.conf /etc/modprobe.d/binfmt_misc.conf
+CONFFILES:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/binfmt_misc.conf /etc/modprobe.d/binfmt_misc.conf /etc/modules-load.d/binfmt_misc.conf /etc/modprobe.d/binfmt_misc.conf
+FILES_INFO:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/binfmt_misc.ko": 17756}
+pkg_postinst:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e: 17756

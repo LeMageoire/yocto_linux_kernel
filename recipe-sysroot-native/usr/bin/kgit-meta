@@ -1,0 +1,283 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+
+#  (kgit-meta), (processes a meta-series to construct a git tree)
+
+#  Copyright (c) 2008-2013 Wind River Systems, Inc.
+
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License version 2 as
+#  published by the Free Software Foundation.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+# For consistent behaviour with "grep -w"
+LC_ALL=C
+export LC_ALL
+
+# figure out where we are
+mypath=${0%/*}
+if [ "$mypath" = "$0" ]
+then
+  mypath="."
+fi
+full_path=$(dirname $(readlink -f $0));
+
+usage()
+{
+cat <<EOF
+
+ kgit-meta [--resume] [-v] [-h] <meta-series>
+
+   Uses meta-series <meta-series> to create a git repository
+
+   --resume: resume processing, even if branches exist
+   -h      : help
+   -v      : verbose
+
+EOF
+}
+
+# command line processing
+vlevel=0
+while [ $# -gt 0 ]; do
+    case "$1" in
+	-f|--force)
+	    _force=t
+	    ;;
+        -r|--resume)
+	    resume=t
+	    ;;
+	-rc|--rc)
+	    _rc_file=$2
+            shift
+	    ;;
+	-v|--v)
+	    verbose=t
+	    vlevel=`expr $vlevel + 1`
+	    ;;
+	-h|--h|--help) 
+	    usage
+            exit;
+            ;;
+	*)
+	    break
+	    ;;
+    esac
+    shift
+done
+
+if [ ! $# -gt 0 ]; then
+    usage
+    exit
+fi
+
+meta_series=$1
+if [ ! -e "$meta_series" ]; then
+    echo "ERROR. meta series '$meta_series' does not exist..."
+    exit 1
+fi
+
+
+path=`dirname $0`
+. $path/kgit
+
+if [ -z "$verbose" ]; then
+    _redir="> /dev/null"
+else
+    if [ "$vlevel" -eq 2 ]; then
+	_redir=""
+    else
+	_redir="> /dev/null"	
+    fi
+fi
+
+progress_increment()
+{
+    pdone=`expr $pdone + 1`
+    progress_update
+}
+
+spin_count=1
+progress_update()
+{
+    percent_done=`expr $pdone \* 100 / $ptotal`
+    hash_count=`expr $percent_done / 2`
+    remainder=`expr 50 - $hash_count`
+
+    case $spin_count in
+	1) bar='|'
+           spin_count=`expr $spin_count + 1`
+           ;;
+        2) bar='/'
+           spin_count=`expr $spin_count + 1`
+           ;;
+        3) bar='-'
+           spin_count=`expr $spin_count + 1`
+           ;;	
+        4) bar='\'	
+	   spin_count=1
+           ;;
+    esac
+
+    # for each 2%, print one #
+    echo -n "  ["
+    for i in `seq $hash_count`; do
+	echo -n '#'
+    done
+    for in in `seq $remainder`; do
+ 	echo -n ' '
+    done
+    echo -ne "] ($bar)($percent_done %)\r"
+}
+
+progress_done()
+{
+    extra_message="$1"
+
+    # for each 2%, print one #
+    echo -n "  ["
+    for i in `seq 50`; do
+	echo -n '#'
+    done
+    echo -e "]  (completed $extra_message)                    "
+}
+
+# Checks that git is configured properly for merge/commit operations
+# If it isn't globally configured, the repository is configured locally
+# to allow commits to the repo
+git_sanity_check()
+{
+    git config --global --get user.name > /dev/null
+    if [ $? -ne 0 ]; then
+	git config user.name "Auto Configured"
+	git config user.email "auto.configured"
+    fi
+}
+
+#
+# gather and organize the information require to generate a repo
+if [ -n "$_rc_file" ] && [ -e "$_rc_file" ]; then
+    cat $_rc_file | while read blah; do
+	for b in $blah; do
+	    case $b in
+		--*) # ignore
+                     ;;
+		*=*) eval $b
+                     ;;
+	    esac
+	done
+    done
+fi
+
+# returns 0 if "branch" or "branch/base" already exists
+# echos the name of the branch that matched
+check_branch() {
+    local b=$1
+
+    git show-ref --verify --quiet refs/heads/${b}
+    if [ $? -ne 0 ]; then
+        git show-ref --verify --quiet refs/heads/${b}/base
+        if [ $? -ne 0 ]; then
+            echo ${b}
+            return 1
+        else
+            echo ${b}/base
+            return 0
+        fi
+    else
+        echo ${b}
+        return 0
+    fi
+}
+
+meta_dir="$(dirname ${meta_series})"
+# process the meta series, line by line
+OLDIFS=${IFS}
+IFS='
+'
+for fline in `cat ${meta_series}`; do
+    case ${fline} in
+        patch*)
+            # do nothing at the moment
+            ;;
+        branch\ rename:*)
+            b=$(echo ${fline} | cut -d: -f2 | sed 's%^\ %%')
+            echo "[INFO]: branch rename: ${b}"
+            old=$(echo ${b} | cut -d' ' -f1)
+            new=$(echo ${b} | cut -d' ' -f2)
+            x="$(check_branch ${new})"
+            if [ $? -ne 0 ]; then
+                eval git branch -m ${old} ${new}
+            else
+                echo "[INFO]: branch ${new} already exists"
+            fi
+            eval git checkout ${new}
+            ;;
+        branch:*)
+            dopatch=
+
+            b=$(echo ${fline} | cut -d: -f2 | sed 's%^\ %%')
+            b="$(check_branch ${b})"
+            if [ $? -ne 0 ]; then
+                echo "[INFO]: branch create: ${b}"
+                eval git checkout -b ${b}
+                # clear any patch fence posts
+                rm -f .git/kgit-s2q.last
+                dopatch=t
+            else
+                echo "[INFO]: reusing branch ${b}"
+                eval git checkout ${b}
+                if [ -n "${resume}" ]; then
+                    dopatch=t
+                fi
+            fi
+
+            if [ -n "${dopatch}" ]; then
+                # now check to see if there's a patch queue
+                qname="patch.${b}.queue"
+                qname="$(echo ${qname} | sed 's%/%.%g')"
+                if [ ! -e "${meta_dir}/${qname}" ]; then
+                    # try it without ".base", in case a branch was renamed
+                    b=$(echo "${b}" | sed 's%/base%%')
+                    qname="patch.${b}.queue"
+                    qname="$(echo ${qname} | sed 's%/%.%g')"
+                fi
+                if [ -e "${meta_dir}/${qname}" ]; then
+                    echo "[INFO]: patch queue \"${qname}\" detected, applying patches"
+                    rm -f ${meta_dir}/series
+                    ln -sf ${qname} ${meta_dir}/series
+                    kgit-s2q --gen -v --patches ${meta_dir}
+                    if [ $? -ne 0 ]; then
+                        exit 1
+                    fi
+                fi
+            fi
+            ;;
+        merge:*)
+            b=$(echo ${fline} | cut -d: -f2 | sed 's%^\ %%')
+            check_branch ${b}
+            if [ $? -ne 0 ]; then
+                echo "ERROR. branch ${b} does not exist, can't merge"
+                exit 1
+            else
+                echo "[INFO]: branch merge: ${b}"
+                eval git merge -q --no-ff -m \"Merge branch ${b}\" ${b}
+                if [ $? -ne 0 ]; then
+                exit 1
+                fi
+            fi
+            ;;
+        *)
+            ;;
+    esac
+
+done
+

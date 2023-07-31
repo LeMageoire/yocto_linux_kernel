@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: bnep kernel module; Bluetooth BNEP ver 1.3
+SUMMARY:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: bnep kernel module
+RDEPENDS:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: kernel-module-bnep
+SECTION: base
+PKG:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: kernel-module-bnep-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/.debug/bnep.ko /etc/modules-load.d/bnep.conf /etc/modprobe.d/bnep.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/bnep.ko /etc/modules-load.d/bnep.conf /etc/modprobe.d/bnep.conf
+CONFFILES:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/bnep.conf /etc/modprobe.d/bnep.conf /etc/modules-load.d/bnep.conf /etc/modprobe.d/bnep.conf
+FILES_INFO:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/bnep.ko": 24372}
+pkg_postinst:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-bnep-6.1.38-fslc+g085682f3fc7e: 24372

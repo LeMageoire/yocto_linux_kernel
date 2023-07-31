@@ -1,0 +1,2 @@
+TaskDeps: do_kernel_checkout do_unpack do_validate_branches do_symlink_kernsrc do_fetch
+kern-tools-native

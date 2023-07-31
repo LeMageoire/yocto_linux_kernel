@@ -1,0 +1,1194 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/binutils/binutils-cross_2.38.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/gcc/gcc-cross_11.3.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/bison/bison_3.8.2.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/dwarfsrcfiles/dwarfsrcfiles.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/rpm/rpm_4.17.1.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-extended/bc/bc_1.07.1.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kmod/kmod_29.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['dwarfsrcfiles-native', 'rpm-native', 'elfutils-native', 'libgcrypt-native', 'lua-native', 'popt-native', 'file-native', 'libmicrohttpd-native', 'libarchive-native', 'curl-native', 'libcap-native', 'libgpg-error-native', 'gnutls-native', 'lzo-native', 'nettle-native', 'libunistring-native', 'libidn2-native']
+NOTE: Skipping as already exists in sysroot: ['binutils-cross-arm', 'gcc-cross-arm', 'quilt-native', 'kern-tools-native', 'bison-native', 'patch-native', 'pkgconfig-native', 'pseudo-native', 'bc-native', 'kmod-native', 'gnu-config-native', 'flex-native', 'texinfo-dummy-native', 'zlib-native', 'attr-native', 'libtool-native', 'xz-native', 'python3-native', 'sqlite3-native', 'gettext-minimal-native', 'bzip2-native', 'zstd-native', 'readline-native', 'mpfr-native', 'libmpc-native', 'linux-libc-headers', 'gmp-native', 'm4-native', 'gdbm-native', 'openssl-native', 'libffi-native', 'ncurses-native', 'libnsl2-native', 'libtirpc-native', 'util-linux-libuuid-native', 'perl-native', 'make-native']
+DEBUG: sed -e 's:^[^/]*/:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/:g' /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/rpm-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/elfutils-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/libgcrypt-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/lua-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/curl-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/libgpg-error-native/fixmepath | xargs sed -i -e 's:FIXMESTAGINGDIRTARGET:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:g; s:FIXMESTAGINGDIRHOST:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:g' -e 's:FIXME_PSEUDO_SYSROOT:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/pseudo-native:g' -e 's:FIXME_HOSTTOOLS_DIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:g' -e 's:FIXME_PKGDATA_DIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd:g' -e 's:FIXME_PSEUDO_LOCALSTATEDIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/pseudo/:g' -e 's:FIXME_LOGFIFO:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.2687559:g'
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing python function do_package
+DEBUG: Executing python function package_convert_pr_autoinc
+DEBUG: Python function package_convert_pr_autoinc finished
+DEBUG: Executing python function package_prepare_pkgdata
+NOTE: Installed into pkgdata-sysroot: []
+DEBUG: Python function package_prepare_pkgdata finished
+DEBUG: Executing python function perform_packagecopy
+DEBUG: Python function perform_packagecopy finished
+DEBUG: Executing python function split_and_strip_files
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usbmidi-lib.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usb-audio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/core/snd-hwdep.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/bnep.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/libcrc32c.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/crc7.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/crc-itu-t.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/udf/udf.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/nls/nls_iso8859-15.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/isofs/isofs.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/msdos.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/binfmt_misc.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/usbserial.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/da9063_wdt.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/usb_wwan.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/ftdi_sio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/option.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/misc/usbtest.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/misc/ehset.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/gadgetfs.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_zero.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_serial.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ncm.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_mass_storage.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ffs.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_audio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/class/cdc-acm.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ether.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/siox/siox-core.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/siox/siox-bus-gpio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/power/supply/rn5t618_power.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl18xx/wl18xx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl12xx/wl12xx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_sdio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_pcie.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_sdio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_core.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/rtl8150.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/pegasus.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/cdc_eem.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/usb/uvc/uvcvideo.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc5000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/v4l2-core/v4l2-jpeg.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc4000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc2028.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tuner-simple.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tuner-types.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tua9001.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5767.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda9887.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5761.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda8290.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda827x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18271.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18250.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18218.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18212.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/r820t.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/si2157.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qt1010.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qm1d1c0042.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qm1d1b0004.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5007t.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5005s.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl301rf.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2266.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt20xx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2131.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2063.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2060.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/msi001.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mc44s803.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/max2165.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/m88rs6000t.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/it913x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc2580.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0013.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0012.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0011.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/e4000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/spi/cxd2880-spi.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/imx-vdoa.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/coda-vpu.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov5645.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov5640.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov2680.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/adv7180.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10039.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10036.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10353.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zd1301_demod.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ves1x93.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ves1820.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tua6100.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ts2020.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda826x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda8261.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda8083.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda18271c2dd.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda665x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10086.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10071.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda1004x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10048.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10023.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10021.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tc90522.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6111.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6110x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6110.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0910.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv090x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0900.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0367.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0299.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0297.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0288.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb6100.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb6000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb0899.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/sp887x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/sp2.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si21xx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si2165.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si2168.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s921.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1432.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1420.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1411.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1409.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2832_sdr.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2830.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2832.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/or51211.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/or51132.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/nxt6000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/nxt200x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mxl692.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mxl5xx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mt352.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mt312.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88473.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88472.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88443x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mb86a20s.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/m88rs2000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mb86a16.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/m88ds3103.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbp22.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbp21.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbh29.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbh25.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgs8gxx.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt330x.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgs8gl5.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt3305.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt3306a.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lg2160.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/l64781.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ix2505v.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/itd1000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6423.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6405.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6421.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/horus3a.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/helene.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ec100.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dvb-pll.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ds3000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxk.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxd.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drx39xyj/drx39xyj.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dibx000_common.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib9000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib8000.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000p.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000m.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib3000mc.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib0090.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib3000mb.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2880/cxd2880.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib0070.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2841er.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2820r.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2099.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24123.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24120.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24117.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24116.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24113.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24110.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx22702.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx22700.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_dig.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/bcm3510.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_decoder.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_common.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/atbm8830.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ascot2e.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/af9033.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/af9013.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/a8293.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/irqchip/irq-imx-mu-msi.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/serio/serport.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/mouse/psmouse.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/algos/i2c-algo-pcf.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/algos/i2c-algo-pca.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpio/gpio-siox.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/imx-sdma.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--strip-debug', '--remove-section=.comment', '--remove-section=.note', '--preserve-dates', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/dmatest.ko']
+DEBUG: runstrip: ['arm-poky-linux-gnueabi-strip', '--remove-section=.comment', '--remove-section=.note', '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/package/boot/vmlinux-6.1.38-fslc+g085682f3fc7e']
+DEBUG: Python function split_and_strip_files finished
+DEBUG: Executing python function fixup_perms
+DEBUG: Python function fixup_perms finished
+DEBUG: Executing python function split_kernel_packages
+DEBUG: Python function split_kernel_packages finished
+DEBUG: Executing python function split_kernel_module_packages
+DEBUG: Python function split_kernel_module_packages finished
+DEBUG: Executing python function package_do_split_locales
+DEBUG: No locale files in this package
+DEBUG: Python function package_do_split_locales finished
+DEBUG: Executing python function populate_packages
+DEBUG: Python function populate_packages finished
+DEBUG: Executing python function package_fixsymlinks
+DEBUG: Python function package_fixsymlinks finished
+DEBUG: Executing python function package_name_hook
+DEBUG: Executing python function debian_package_name_hook
+DEBUG: LIBNAMES: pkg linux-fslc-src libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-vmlinux libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-modules libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-zl10353-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-zl10039-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-zl10036-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-zd1301-demod-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-xc5000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-xc4000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-xc2028-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-wlcore-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-wl18xx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-wl12xx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ves1x93-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ves1820-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-v4l2-jpeg-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-uvcvideo-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-usbtest-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-usbserial-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-usb-wwan-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-udf-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tuner-types-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tuner-simple-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tua9001-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tua6100-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ts2020-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tea5761-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda9887-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda8290-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda827x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda826x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda8261-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda8083-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda665x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda18271c2dd-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda18271-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda18250-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda18218-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda18212-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda10086-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda10071-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda1004x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda10023-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tda10021-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-tc90522-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv6111-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv6110x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv6110-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0910-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv090x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0900-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0367-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0299-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0297-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stv0288-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stb6100-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stb6000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-stb0899-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-sp887x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-sp2-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-snd-usb-audio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-snd-hwdep-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-siox-core-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-siox-bus-gpio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-si21xx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-si2168-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-si2165-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-si2157-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-serport-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-s921-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-s5h1432-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-s5h1420-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-s5h1411-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-s5h1409-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-rtl8150-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-rtl2832-sdr-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-rtl2832-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-rtl2830-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-rn5t618-power-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-r820t-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-qt1010-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-qm1d1c0042-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-qm1d1b0004-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-psmouse-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-pegasus-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ov5645-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ov5640-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-or51211-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-or51132-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-option-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-nxt6000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-nxt200x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-nls-iso8859-15-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mxl692-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mxl5xx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mxl5007t-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mxl301rf-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-sdio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt352-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt312-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt2266-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt2131-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt20xx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt2063-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mt2060-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-msi001-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-msdos-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mn88473-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mn88472-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mn88443x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mb86a20s-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-mb86a16-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-max2165-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-m88rs6000t-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-m88rs2000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-m88ds3103-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lnbp22-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lnbp21-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lnbh29-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lnbh25-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-libcrc32c-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lgs8gxx-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lgs8gl5-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lgdt330x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lgdt3306a-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lgdt3305-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-lg2160-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-l64781-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-itd1000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-it913x-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-isofs-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-isl6423-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-isl6421-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-irq-imx-mu-msi-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-imx-vdoa-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-i2c-algo-pcf-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-i2c-algo-pca-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-horus3a-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-helene-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-gpio-siox-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-zero-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-ncm-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-mass-storage-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-ffs-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-ether-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-g-audio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ftdi-sio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-fc2580-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-fc0012-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-fc0011-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ehset-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ec100-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-e4000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dw-hdmi-ahb-audio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dvb-pll-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ds3000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-drxk-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-drxd-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-drx39xyj-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dmatest-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dibx000-common-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib9000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib8000-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib7000m-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib3000mc-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib3000mb-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib0090-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-dib0070-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cxd2880-spi-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cxd2880-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cxd2841er-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cxd2820r-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cxd2099-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24123-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24117-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24116-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24113-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx24110-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx22702-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cx22700-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-crc7-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-crc-itu-t-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cdc-eem-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-cdc-acm-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-brcmutil-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-bnep-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-bcm3510-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-au8522-dig-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-au8522-decoder-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-au8522-common-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ath10k-sdio-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ath-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-ascot2e-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-af9033-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-af9013-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-adv7180-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-module-a8293-6.1.38-fslc+g085682f3fc7e libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-image-zimage libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-image libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-devicetree libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-dev libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-dbg libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel-base libs 0 bins 0 sonames []
+DEBUG: LIBNAMES: pkg kernel libs 0 bins 0 sonames []
+DEBUG: Python function debian_package_name_hook finished
+DEBUG: Python function package_name_hook finished
+DEBUG: Executing python function package_do_filedeps
+DEBUG: Python function package_do_filedeps finished
+DEBUG: Executing python function package_do_shlibs
+DEBUG: Reading shlib providers in /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/pkgdata-sysroot/shlibs2
+DEBUG: calculating shlib provides for linux-fslc-src
+DEBUG: LIBNAMES: pkg linux-fslc-src sonames set()
+DEBUG: calculating shlib provides for kernel-dbg
+DEBUG: LIBNAMES: pkg kernel-dbg sonames set()
+DEBUG: calculating shlib provides for kernel
+DEBUG: LIBNAMES: pkg kernel sonames set()
+DEBUG: calculating shlib provides for kernel-base
+DEBUG: LIBNAMES: pkg kernel-base sonames set()
+DEBUG: calculating shlib provides for kernel-vmlinux
+DEBUG: LIBNAMES: pkg kernel-vmlinux sonames set()
+DEBUG: calculating shlib provides for kernel-image
+DEBUG: LIBNAMES: pkg kernel-image sonames set()
+DEBUG: calculating shlib provides for kernel-dev
+DEBUG: LIBNAMES: pkg kernel-dev sonames set()
+DEBUG: calculating shlib provides for kernel-modules
+DEBUG: LIBNAMES: pkg kernel-modules sonames set()
+DEBUG: calculating shlib provides for kernel-image-zimage
+DEBUG: LIBNAMES: pkg kernel-image-zimage sonames set()
+DEBUG: calculating shlib provides for kernel-devicetree
+DEBUG: LIBNAMES: pkg kernel-devicetree sonames set()
+DEBUG: calculating shlib provides for kernel-module-dmatest-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dmatest-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-gpio-siox-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-gpio-siox-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dw-hdmi-ahb-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dw-hdmi-ahb-audio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-i2c-algo-pca-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-i2c-algo-pca-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-i2c-algo-pcf-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-i2c-algo-pcf-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-psmouse-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-psmouse-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-serport-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-serport-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-irq-imx-mu-msi-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-irq-imx-mu-msi-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-a8293-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-a8293-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-af9013-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-af9013-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-af9033-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-af9033-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ascot2e-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ascot2e-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-au8522-common-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-au8522-common-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-au8522-decoder-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-au8522-decoder-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-au8522-dig-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-au8522-dig-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-bcm3510-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-bcm3510-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx22700-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx22700-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx22702-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx22702-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24110-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24110-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24113-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24113-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24116-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24116-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24117-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24117-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cx24123-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cx24123-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cxd2099-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cxd2099-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cxd2820r-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cxd2820r-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cxd2841er-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cxd2841er-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib0070-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib0070-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib0090-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib0090-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib3000mb-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib3000mb-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib3000mc-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib3000mc-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib7000m-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib7000m-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib8000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib8000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dib9000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dib9000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dibx000-common-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dibx000-common-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-drxd-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-drxd-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-drxk-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-drxk-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ds3000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ds3000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-dvb-pll-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-dvb-pll-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ec100-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ec100-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-helene-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-helene-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-horus3a-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-horus3a-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-isl6421-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-isl6421-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-isl6423-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-isl6423-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-itd1000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-itd1000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-l64781-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-l64781-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lg2160-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lg2160-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lgdt3305-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lgdt3305-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lgdt3306a-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lgdt3306a-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lgdt330x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lgdt330x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lgs8gl5-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lgs8gl5-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lgs8gxx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lgs8gxx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lnbh25-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lnbh25-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lnbh29-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lnbh29-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lnbp21-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lnbp21-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-lnbp22-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-lnbp22-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-m88ds3103-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-m88ds3103-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-m88rs2000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-m88rs2000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mb86a16-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mb86a16-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mb86a20s-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mb86a20s-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mn88443x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mn88443x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mn88472-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mn88472-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mn88473-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mn88473-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt312-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt312-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt352-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt352-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mxl5xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mxl5xx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mxl692-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mxl692-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-nxt200x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-nxt200x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-nxt6000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-nxt6000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-or51132-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-or51132-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-or51211-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-or51211-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-rtl2830-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-rtl2830-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-rtl2832-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-rtl2832-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-rtl2832-sdr-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-rtl2832-sdr-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-s5h1409-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-s5h1409-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-s5h1411-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-s5h1411-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-s5h1420-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-s5h1420-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-s5h1432-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-s5h1432-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-s921-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-s921-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-si2165-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-si2165-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-si2168-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-si2168-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-si21xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-si21xx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-sp2-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-sp2-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-sp887x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-sp887x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stb0899-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stb0899-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stb6000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stb6000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stb6100-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stb6100-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0288-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0288-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0297-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0297-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0299-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0299-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0367-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0367-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0900-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0900-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv090x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv090x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv0910-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv0910-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv6110-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv6110-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv6110x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv6110x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-stv6111-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-stv6111-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tc90522-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tc90522-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda10021-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda10021-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda10023-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda10023-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda1004x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda1004x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda10071-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda10071-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda10086-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda10086-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda18271c2dd-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda18271c2dd-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda665x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda665x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda8083-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda8083-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda8261-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda8261-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda826x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda826x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ts2020-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ts2020-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tua6100-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tua6100-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ves1820-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ves1820-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ves1x93-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ves1x93-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-zd1301-demod-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-zd1301-demod-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-zl10036-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-zl10036-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-zl10039-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-zl10039-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-zl10353-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-zl10353-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cxd2880-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cxd2880-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-drx39xyj-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-drx39xyj-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-adv7180-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-adv7180-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ov5640-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ov5640-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ov5645-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ov5645-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-imx-vdoa-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-imx-vdoa-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cxd2880-spi-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cxd2880-spi-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-e4000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-e4000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-fc0011-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-fc0011-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-fc0012-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-fc0012-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-fc2580-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-fc2580-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-it913x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-it913x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-m88rs6000t-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-m88rs6000t-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-max2165-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-max2165-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-msi001-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-msi001-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt2060-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt2060-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt2063-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt2063-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt20xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt20xx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt2131-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt2131-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mt2266-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mt2266-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mxl301rf-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mxl301rf-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mxl5007t-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mxl5007t-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-qm1d1b0004-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-qm1d1b0004-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-qm1d1c0042-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-qm1d1c0042-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-qt1010-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-qt1010-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-r820t-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-r820t-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-si2157-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-si2157-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda18212-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda18212-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda18218-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda18218-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda18250-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda18250-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda18271-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda18271-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda827x-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda827x-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda8290-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda8290-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tda9887-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tda9887-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tea5761-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tea5761-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tua9001-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tua9001-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tuner-simple-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tuner-simple-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-tuner-types-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-tuner-types-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-xc2028-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-xc2028-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-xc4000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-xc4000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-xc5000-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-xc5000-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-uvcvideo-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-uvcvideo-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-v4l2-jpeg-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-v4l2-jpeg-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cdc-eem-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cdc-eem-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-pegasus-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-pegasus-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-rtl8150-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-rtl8150-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ath-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ath-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ath10k-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ath10k-sdio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-brcmutil-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-brcmutil-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mwifiex-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-mwifiex-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-mwifiex-sdio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-wl12xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-wl12xx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-wl18xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-wl18xx-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-wlcore-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-wlcore-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-rn5t618-power-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-rn5t618-power-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-siox-bus-gpio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-siox-bus-gpio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-siox-core-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-siox-core-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-cdc-acm-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-cdc-acm-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-audio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-ether-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-ether-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-ffs-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-ffs-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-mass-storage-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-mass-storage-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-ncm-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-ncm-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-g-zero-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-g-zero-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ehset-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ehset-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-usbtest-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-usbtest-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-ftdi-sio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-ftdi-sio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-option-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-option-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-usb-wwan-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-usb-wwan-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-usbserial-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-usbserial-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-msdos-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-msdos-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-isofs-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-isofs-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-nls-iso8859-15-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-nls-iso8859-15-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-udf-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-udf-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-crc-itu-t-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-crc-itu-t-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-crc7-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-crc7-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-libcrc32c-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-libcrc32c-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-bnep-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-bnep-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-snd-hwdep-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-snd-hwdep-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-snd-usb-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-snd-usb-audio-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib provides for kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e
+DEBUG: LIBNAMES: pkg kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e sonames set()
+DEBUG: calculating shlib requirements for linux-fslc-src
+DEBUG: calculating shlib requirements for kernel-dbg
+DEBUG: calculating shlib requirements for kernel
+DEBUG: calculating shlib requirements for kernel-base
+DEBUG: calculating shlib requirements for kernel-vmlinux
+DEBUG: calculating shlib requirements for kernel-image
+DEBUG: calculating shlib requirements for kernel-dev
+DEBUG: calculating shlib requirements for kernel-modules
+DEBUG: calculating shlib requirements for kernel-image-zimage
+DEBUG: calculating shlib requirements for kernel-devicetree
+DEBUG: calculating shlib requirements for kernel-module-dmatest-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-imx-sdma-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-gpio-siox-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dw-hdmi-ahb-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-i2c-algo-pca-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-i2c-algo-pcf-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-psmouse-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-serport-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-irq-imx-mu-msi-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-a8293-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-af9013-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-af9033-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ascot2e-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-au8522-common-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-au8522-decoder-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-au8522-dig-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-bcm3510-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx22700-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx22702-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24110-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24113-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24116-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24117-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cx24123-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cxd2099-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cxd2820r-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cxd2841er-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib0070-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib0090-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib3000mb-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib3000mc-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib7000m-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib8000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dib9000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dibx000-common-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-drxd-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-drxk-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ds3000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-dvb-pll-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ec100-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-helene-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-horus3a-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-isl6421-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-isl6423-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-itd1000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ix2505v-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-l64781-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lg2160-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lgdt3305-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lgdt3306a-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lgdt330x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lgs8gl5-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lgs8gxx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lnbh25-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lnbh29-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lnbp21-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-lnbp22-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-m88ds3103-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-m88rs2000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mb86a16-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mb86a20s-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mn88443x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mn88472-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mn88473-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt312-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt352-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mxl5xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mxl692-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-nxt200x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-nxt6000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-or51132-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-or51211-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-rtl2830-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-rtl2832-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-rtl2832-sdr-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-s5h1409-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-s5h1411-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-s5h1420-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-s5h1432-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-s921-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-si2165-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-si2168-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-si21xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-sp2-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-sp887x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stb0899-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stb6000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stb6100-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0288-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0297-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0299-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0367-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0900-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv090x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv0910-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv6110-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv6110x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-stv6111-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tc90522-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda10021-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda10023-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda1004x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda10071-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda10086-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda18271c2dd-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda665x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda8083-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda8261-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda826x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ts2020-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tua6100-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ves1820-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ves1x93-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-zd1301-demod-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-zl10036-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-zl10039-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-zl10353-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cxd2880-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-drx39xyj-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-adv7180-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ov2680-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ov5640-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ov5645-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-coda-vpu-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-imx-vdoa-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cxd2880-spi-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-e4000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-fc0011-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-fc0012-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-fc0013-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-fc2580-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-it913x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-m88rs6000t-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-max2165-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mc44s803-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-msi001-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt2060-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt2063-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt20xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt2131-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mt2266-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mxl301rf-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mxl5005s-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mxl5007t-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-qm1d1b0004-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-qm1d1c0042-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-qt1010-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-r820t-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-si2157-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda18212-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda18218-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda18250-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda18271-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda827x-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda8290-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tda9887-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tea5761-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tea5767-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tua9001-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tuner-simple-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-tuner-types-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-xc2028-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-xc4000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-xc5000-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-uvcvideo-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-v4l2-jpeg-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cdc-eem-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-pegasus-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-rtl8150-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ath-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ath10k-core-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ath10k-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-brcmfmac-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-brcmutil-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mwifiex-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-mwifiex-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-wl12xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-wl18xx-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-wlcore-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-rn5t618-power-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-siox-bus-gpio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-siox-core-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-cdc-acm-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-ether-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-ffs-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-mass-storage-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-ncm-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-serial-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-g-zero-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ehset-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-usbtest-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-ftdi-sio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-option-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-usb-wwan-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-usbserial-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-binfmt-misc-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-msdos-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-isofs-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-nls-iso8859-15-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-udf-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-crc-itu-t-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-crc7-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-libcrc32c-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-bnep-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-snd-hwdep-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-snd-usb-audio-6.1.38-fslc+g085682f3fc7e
+DEBUG: calculating shlib requirements for kernel-module-snd-usbmidi-lib-6.1.38-fslc+g085682f3fc7e
+DEBUG: Python function package_do_shlibs finished
+DEBUG: Executing python function package_do_pkgconfig
+DEBUG: Python function package_do_pkgconfig finished
+DEBUG: Executing python function read_shlibdeps
+DEBUG: Python function read_shlibdeps finished
+DEBUG: Executing python function package_depchains
+DEBUG: Python function package_depchains finished
+DEBUG: Executing python function emit_pkgdata
+DEBUG: Python function emit_pkgdata finished
+DEBUG: Executing shell function emit_depmod_pkgdata
+DEBUG: Shell function emit_depmod_pkgdata finished
+DEBUG: Python function do_package finished
+DEBUG: Executing python function sstate_task_postfunc
+NOTE: Using umask 0o002 (not 22) for sstate packaging
+DEBUG: Executing python function target_add_sysroot_deps
+DEBUG: Python function target_add_sysroot_deps finished
+DEBUG: Executing python function sstate_hardcode_path
+NOTE: Removing hardcoded paths from sstate package: 'find /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-package/ \( -name "*.la" -o -name "*-config" -o -name "*_config" -o -name "postinst-*" \) -type f | xargs grep -l -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools' | tee /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-package/fixmepath | xargs --no-run-if-empty sed -i -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:FIXMESTAGINGDIRHOST:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:FIXMESTAGINGDIRTARGET:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:FIXME_HOSTTOOLS_DIR:g''
+DEBUG: Python function sstate_hardcode_path finished
+DEBUG: Executing python function sstate_report_unihash
+DEBUG: Reported task 84847c9927a9457bc8e6769acfe077d19c4ad85680e975fb330823107ce8810d as unihash 84847c9927a9457bc8e6769acfe077d19c4ad85680e975fb330823107ce8810d to unix:///home/lemageoire/fsl-community-bsp/build-openrex/hashserve.sock
+DEBUG: Python function sstate_report_unihash finished
+DEBUG: Executing shell function sstate_create_package
+DEBUG: Shell function sstate_create_package finished
+DEBUG: Executing python function sstate_hardcode_path_unpack
+DEBUG: Python function sstate_hardcode_path_unpack finished
+DEBUG: Executing python function uninative_changeinterp
+DEBUG: Python function uninative_changeinterp finished
+DEBUG: Python function sstate_task_postfunc finished

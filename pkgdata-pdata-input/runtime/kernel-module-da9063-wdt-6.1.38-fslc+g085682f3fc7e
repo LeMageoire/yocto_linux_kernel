@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: da9063-wdt kernel module; Watchdog driver for Dialog DA9063
+SUMMARY:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: da9063-wdt kernel module
+RDEPENDS:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: kernel-module-da9063-wdt
+SECTION: base
+PKG:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/.debug/da9063_wdt.ko /etc/modules-load.d/da9063_wdt.conf /etc/modprobe.d/da9063_wdt.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/da9063_wdt.ko /etc/modules-load.d/da9063_wdt.conf /etc/modprobe.d/da9063_wdt.conf
+CONFFILES:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/da9063_wdt.conf /etc/modprobe.d/da9063_wdt.conf /etc/modules-load.d/da9063_wdt.conf /etc/modprobe.d/da9063_wdt.conf
+FILES_INFO:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/da9063_wdt.ko": 9740}
+pkg_postinst:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-da9063-wdt-6.1.38-fslc+g085682f3fc7e: 9740

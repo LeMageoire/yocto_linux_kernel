@@ -1,0 +1,4 @@
+#!/bin/sh
+echo 'ERROR: /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin/ncurses6-config should not be used, use an alternative such as pkg-config' >&2
+echo '--should-not-have-used-/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/bin/ncurses6-config'
+exit 1

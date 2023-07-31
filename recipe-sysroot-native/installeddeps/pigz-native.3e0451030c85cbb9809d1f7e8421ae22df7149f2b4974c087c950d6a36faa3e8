@@ -1,0 +1,12 @@
+recipe-sysroot-native/sysroot-providers/pigz-native
+recipe-sysroot-native/sysroot-providers/gzip-native
+recipe-sysroot-native/usr/bin/gunzip
+recipe-sysroot-native/usr/bin/zcat
+recipe-sysroot-native/usr/bin/gzip
+recipe-sysroot-native/bin/pigzcat
+recipe-sysroot-native/bin/unpigz
+recipe-sysroot-native/bin/pigz
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/bin/
+recipe-sysroot-native/bin/
+recipe-sysroot-native/usr/

@@ -1,0 +1,7 @@
+#! /bin/sh
+
+export PKG_CONFIG_PATH="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib/pkgconfig:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/share/pkgconfig"
+export PKG_CONFIG_LIBDIR="/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/usr/lib/pkgconfig"
+unset PKG_CONFIG_SYSROOT_DIR
+
+pkg-config "$@"

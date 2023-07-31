@@ -1,0 +1,93 @@
+def do_qa_configure(d):
+    import subprocess
+
+    ###########################################################################
+    # Check config.log for cross compile issues
+    ###########################################################################
+
+    configs = []
+    workdir = d.getVar('WORKDIR')
+
+    skip = (d.getVar('INSANE_SKIP') or "").split()
+    skip_configure_unsafe = False
+    if 'configure-unsafe' in skip:
+        bb.note("Recipe %s skipping qa checking: configure-unsafe" % d.getVar('PN'))
+        skip_configure_unsafe = True
+
+    if bb.data.inherits_class('autotools', d) and not skip_configure_unsafe:
+        bb.note("Checking autotools environment for common misconfiguration")
+        for root, dirs, files in os.walk(workdir):
+            statement = "grep -q -F -e 'is unsafe for cross-compilation' %s" % \
+                        os.path.join(root,"config.log")
+            if "config.log" in files:
+                if subprocess.call(statement, shell=True) == 0:
+                    error_msg = """This autoconf log indicates errors, it looked at host include and/or library paths while determining system capabilities.
+Rerun configure task after fixing this."""
+                    oe.qa.handle_error("configure-unsafe", error_msg, d)
+
+            if "configure.ac" in files:
+                configs.append(os.path.join(root,"configure.ac"))
+            if "configure.in" in files:
+                configs.append(os.path.join(root, "configure.in"))
+
+    ###########################################################################
+    # Check gettext configuration and dependencies are correct
+    ###########################################################################
+
+    skip_configure_gettext = False
+    if 'configure-gettext' in skip:
+        bb.note("Recipe %s skipping qa checking: configure-gettext" % d.getVar('PN'))
+        skip_configure_gettext = True
+
+    cnf = d.getVar('EXTRA_OECONF') or ""
+    if not ("gettext" in d.getVar('P') or "gcc-runtime" in d.getVar('P') or \
+            "--disable-nls" in cnf or skip_configure_gettext):
+        ml = d.getVar("MLPREFIX") or ""
+        if bb.data.inherits_class('cross-canadian', d):
+            gt = "nativesdk-gettext"
+        else:
+            gt = "gettext-native"
+        deps = bb.utils.explode_deps(d.getVar('DEPENDS') or "")
+        if gt not in deps:
+            for config in configs:
+                gnu = "grep \"^[[:space:]]*AM_GNU_GETTEXT\" %s >/dev/null" % config
+                if subprocess.call(gnu, shell=True) == 0:
+                    error_msg = "AM_GNU_GETTEXT used but no inherit gettext"
+                    oe.qa.handle_error("configure-gettext", error_msg, d)
+
+    ###########################################################################
+    # Check unrecognised configure options (with a white list)
+    ###########################################################################
+    if bb.data.inherits_class("autotools", d):
+        bb.note("Checking configure output for unrecognised options")
+        try:
+            if bb.data.inherits_class("autotools", d):
+                flag = "WARNING: unrecognized options:"
+                log = os.path.join(d.getVar('B'), 'config.log')
+            output = subprocess.check_output(['grep', '-F', flag, log]).decode("utf-8").replace(', ', ' ').replace('"', '')
+            options = set()
+            for line in output.splitlines():
+                options |= set(line.partition(flag)[2].split())
+            ignore_opts = set(d.getVar("UNKNOWN_CONFIGURE_OPT_IGNORE").split())
+            options -= ignore_opts
+            if options:
+                pn = d.getVar('PN')
+                error_msg = pn + ": configure was passed unrecognised options: " + " ".join(options)
+                oe.qa.handle_error("unknown-configure-option", error_msg, d)
+        except subprocess.CalledProcessError:
+            pass
+
+    # Check invalid PACKAGECONFIG
+    pkgconfig = (d.getVar("PACKAGECONFIG") or "").split()
+    if pkgconfig:
+        pkgconfigflags = d.getVarFlags("PACKAGECONFIG") or {}
+        for pconfig in pkgconfig:
+            if pconfig not in pkgconfigflags:
+                pn = d.getVar('PN')
+                error_msg = "%s: invalid PACKAGECONFIG: %s" % (pn, pconfig)
+                oe.qa.handle_error("invalid-packageconfig", error_msg, d)
+
+    oe.qa.exit_if_errors(d)
+
+do_qa_configure(d)
+

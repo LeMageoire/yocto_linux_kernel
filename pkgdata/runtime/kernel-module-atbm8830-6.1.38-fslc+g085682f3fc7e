@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: atbm8830 kernel module; AltoBeam ATBM8830/8831 GB20600 demodulator driver
+SUMMARY:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: atbm8830 kernel module
+RDEPENDS:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: kernel-module-atbm8830
+SECTION: base
+PKG:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/atbm8830.ko /etc/modules-load.d/atbm8830.conf /etc/modprobe.d/atbm8830.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/atbm8830.ko /etc/modules-load.d/atbm8830.conf /etc/modprobe.d/atbm8830.conf
+CONFFILES:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/atbm8830.conf /etc/modprobe.d/atbm8830.conf /etc/modules-load.d/atbm8830.conf /etc/modprobe.d/atbm8830.conf
+FILES_INFO:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/atbm8830.ko": 12272}
+pkg_postinst:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-atbm8830-6.1.38-fslc+g085682f3fc7e: 12272

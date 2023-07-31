@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: mwifiex-pcie kernel module; Marvell WiFi-Ex PCI-Express Driver version 1.0
+SUMMARY:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: mwifiex-pcie kernel module
+RDEPENDS:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e kernel-module-mwifiex-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: kernel-module-mwifiex-pcie
+SECTION: base
+PKG:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/.debug/mwifiex_pcie.ko /etc/modules-load.d/mwifiex_pcie.conf /etc/modprobe.d/mwifiex_pcie.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_pcie.ko /etc/modules-load.d/mwifiex_pcie.conf /etc/modprobe.d/mwifiex_pcie.conf
+CONFFILES:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/mwifiex_pcie.conf /etc/modprobe.d/mwifiex_pcie.conf /etc/modules-load.d/mwifiex_pcie.conf /etc/modprobe.d/mwifiex_pcie.conf
+FILES_INFO:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_pcie.ko": 52620}
+pkg_postinst:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-mwifiex-pcie-6.1.38-fslc+g085682f3fc7e: 52620

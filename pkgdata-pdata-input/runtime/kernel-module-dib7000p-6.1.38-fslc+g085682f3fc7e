@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: dib7000p kernel module; Driver for the DiBcom 7000PC COFDM demodulator
+SUMMARY:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: dib7000p kernel module
+RDEPENDS:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e kernel-module-dibx000-common-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: kernel-module-dib7000p
+SECTION: base
+PKG:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/dib7000p.ko /etc/modules-load.d/dib7000p.conf /etc/modprobe.d/dib7000p.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000p.ko /etc/modules-load.d/dib7000p.conf /etc/modprobe.d/dib7000p.conf
+CONFFILES:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/dib7000p.conf /etc/modprobe.d/dib7000p.conf /etc/modules-load.d/dib7000p.conf /etc/modprobe.d/dib7000p.conf
+FILES_INFO:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000p.ko": 39668}
+pkg_postinst:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-dib7000p-6.1.38-fslc+g085682f3fc7e: 39668

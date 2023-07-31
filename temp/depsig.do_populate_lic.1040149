@@ -1,0 +1,10 @@
+OEOuthashBasic
+14
+SSTATE_PKGSPEC=sstate:linux-fslc::6.1.38+gitAUTOINC+085682f3fc:r0::10:
+task=populate_lic
+drwx                                                                                       .
+drwx                                                                                       ./license-destdir
+drwx                                                                                       ./license-destdir/linux-fslc
+-rw-                  496 fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0 ./license-destdir/linux-fslc/COPYING
+-rw-                17611 f89c8bdbf6eb77e64b5cc53233b446bca77f1d1dae576c81925970be5ecfc891 ./license-destdir/linux-fslc/generic_GPL-2.0-only
+-rw-                   62 8e421713c2eceb86b04232be77cfdcd37f09b44cc9a2cb925461aa8c7a9f3f76 ./license-destdir/linux-fslc/recipeinfo

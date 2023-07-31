@@ -1,0 +1,14 @@
+recipe-sysroot-native/sysroot-providers/libidn2-native
+recipe-sysroot-native/usr/bin/idn2
+recipe-sysroot-native/usr/include/idn2.h
+recipe-sysroot-native/usr/lib/libidn2.so
+recipe-sysroot-native/usr/lib/libidn2.so.0.3.7
+recipe-sysroot-native/usr/lib/libidn2.so.0
+recipe-sysroot-native/usr/lib/pkgconfig/libidn2.pc
+recipe-sysroot-native/usr/lib/pkgconfig/
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/include/
+recipe-sysroot-native/usr/share/
+recipe-sysroot-native/usr/lib/
+recipe-sysroot-native/usr/bin/
+recipe-sysroot-native/usr/

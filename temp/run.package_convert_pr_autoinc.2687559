@@ -1,0 +1,13 @@
+def package_convert_pr_autoinc(d):
+    pkgv = d.getVar("PKGV")
+
+    # Adjust pkgv as necessary...
+    if 'AUTOINC' in pkgv:
+        d.setVar("PKGV", pkgv.replace("AUTOINC", "${PRSERV_PV_AUTOINC}"))
+
+    # Change PRSERV_PV_AUTOINC and EXTENDPRAUTO usage to special values
+    d.setVar('PRSERV_PV_AUTOINC', '@PRSERV_PV_AUTOINC@')
+    d.setVar('EXTENDPRAUTO', '@EXTENDPRAUTO@')
+
+package_convert_pr_autoinc(d)
+

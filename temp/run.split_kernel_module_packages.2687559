@@ -1,0 +1,326 @@
+def split_kernel_module_packages(d):
+    import re
+
+    modinfoexp = re.compile("([^=]+)=(.*)")
+
+    def extract_modinfo(file):
+        import tempfile, subprocess
+        tempfile.tempdir = d.getVar("WORKDIR")
+        compressed = re.match( r'.*\.(gz|xz|zst)$', file)
+        tf = tempfile.mkstemp()
+        tmpfile = tf[1]
+        if compressed:
+            tmpkofile = tmpfile + ".ko"
+            if compressed.group(1) == 'gz':
+                cmd = "gunzip -dc %s > %s" % (file, tmpkofile)
+                subprocess.check_call(cmd, shell=True)
+            elif compressed.group(1) == 'xz':
+                cmd = "xz -dc %s > %s" % (file, tmpkofile)
+                subprocess.check_call(cmd, shell=True)
+            elif compressed.group(1) == 'zst':
+                cmd = "zstd -dc %s > %s" % (file, tmpkofile)
+                subprocess.check_call(cmd, shell=True)
+            else:
+                msg = "Cannot decompress '%s'" % file
+                raise msg
+            cmd = "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or "", tmpkofile, tmpfile)
+        else:
+            cmd = "%sobjcopy -j .modinfo -O binary %s %s" % (d.getVar("HOST_PREFIX") or "", file, tmpfile)
+        subprocess.check_call(cmd, shell=True)
+        # errors='replace': Some old kernel versions contain invalid utf-8 characters in mod descriptions (like 0xf6, 'ö')
+        f = open(tmpfile, errors='replace')
+        l = f.read().split("\000")
+        f.close()
+        os.close(tf[0])
+        os.unlink(tmpfile)
+        if compressed:
+            os.unlink(tmpkofile)
+        vals = {}
+        for i in l:
+            m = modinfoexp.match(i)
+            if not m:
+                continue
+            vals[m.group(1)] = m.group(2)
+        return vals
+
+    def frob_metadata(file, pkg, pattern, format, basename):
+        vals = extract_modinfo(file)
+
+        dvar = d.getVar('PKGD')
+
+        # If autoloading is requested, output /etc/modules-load.d/<name>.conf and append
+        # appropriate modprobe commands to the postinst
+        autoloadlist = (d.getVar("KERNEL_MODULE_AUTOLOAD") or "").split()
+        autoload = d.getVar('module_autoload_%s' % basename)
+        if autoload and autoload == basename:
+            bb.warn("module_autoload_%s was replaced by KERNEL_MODULE_AUTOLOAD for cases where basename == module name, please drop it" % basename)
+        if autoload and basename not in autoloadlist:
+            bb.warn("module_autoload_%s is defined but '%s' isn't included in KERNEL_MODULE_AUTOLOAD, please add it there" % (basename, basename))
+        if basename in autoloadlist:
+            name = '%s/etc/modules-load.d/%s.conf' % (dvar, basename)
+            f = open(name, 'w')
+            if autoload:
+                for m in autoload.split():
+                    f.write('%s\n' % m)
+            else:
+                f.write('%s\n' % basename)
+            f.close()
+            postinst = d.getVar('pkg_postinst:%s' % pkg)
+            if not postinst:
+                bb.fatal("pkg_postinst:%s not defined" % pkg)
+            postinst += d.getVar('autoload_postinst_fragment') % (autoload or basename)
+            d.setVar('pkg_postinst:%s' % pkg, postinst)
+
+        # Write out any modconf fragment
+        modconflist = (d.getVar("KERNEL_MODULE_PROBECONF") or "").split()
+        modconf = d.getVar('module_conf_%s' % basename)
+        if modconf and basename in modconflist:
+            name = '%s/etc/modprobe.d/%s.conf' % (dvar, basename)
+            f = open(name, 'w')
+            f.write("%s\n" % modconf)
+            f.close()
+        elif modconf:
+            bb.error("Please ensure module %s is listed in KERNEL_MODULE_PROBECONF since module_conf_%s is set" % (basename, basename))
+
+        files = d.getVar('FILES:%s' % pkg)
+        files = "%s /etc/modules-load.d/%s.conf /etc/modprobe.d/%s.conf" % (files, basename, basename)
+        d.setVar('FILES:%s' % pkg, files)
+
+        conffiles = d.getVar('CONFFILES:%s' % pkg)
+        conffiles = "%s /etc/modules-load.d/%s.conf /etc/modprobe.d/%s.conf" % (conffiles, basename, basename)
+        d.setVar('CONFFILES:%s' % pkg, conffiles)
+
+        if "description" in vals:
+            old_desc = d.getVar('DESCRIPTION:' + pkg) or ""
+            d.setVar('DESCRIPTION:' + pkg, old_desc + "; " + vals["description"])
+
+        rdepends = bb.utils.explode_dep_versions2(d.getVar('RDEPENDS:' + pkg) or "")
+        modinfo_deps = []
+        if "depends" in vals and vals["depends"] != "":
+            for dep in vals["depends"].split(","):
+                on = legitimize_package_name(dep)
+                dependency_pkg = format % on
+                modinfo_deps.append(dependency_pkg)
+        for dep in modinfo_deps:
+            if not dep in rdepends:
+                rdepends[dep] = []
+        d.setVar('RDEPENDS:' + pkg, bb.utils.join_deps(rdepends, commasep=False))
+
+        # Avoid automatic -dev recommendations for modules ending with -dev.
+        d.setVarFlag('RRECOMMENDS:' + pkg, 'nodeprrecs', 1)
+
+        # Provide virtual package without postfix
+        providevirt = d.getVar('KERNEL_MODULE_PROVIDE_VIRTUAL')
+        if providevirt == "1":
+           postfix = format.split('%s')[1]
+           d.setVar('RPROVIDES:' + pkg, pkg.replace(postfix, ''))
+
+    kernel_package_name = d.getVar("KERNEL_PACKAGE_NAME") or "kernel"
+    kernel_version = d.getVar("KERNEL_VERSION")
+
+    metapkg = d.getVar('KERNEL_MODULES_META_PACKAGE')
+    splitmods = d.getVar('KERNEL_SPLIT_MODULES')
+    postinst = d.getVar('pkg_postinst:modules')
+    postrm = d.getVar('pkg_postrm:modules')
+
+    if splitmods != '1':
+        etcdir = d.getVar('sysconfdir')
+        d.appendVar('FILES:' + metapkg, '%s/modules-load.d/ %s/modprobe.d/ %s/modules/' % (etcdir, etcdir, d.getVar("nonarch_base_libdir")))
+        d.appendVar('pkg_postinst:%s' % metapkg, postinst)
+        d.prependVar('pkg_postrm:%s' % metapkg, postrm);
+        return
+
+    module_regex = r'^(.*)\.k?o(?:\.(gz|xz|zst))?$'
+
+    module_pattern_prefix = d.getVar('KERNEL_MODULE_PACKAGE_PREFIX')
+    module_pattern_suffix = d.getVar('KERNEL_MODULE_PACKAGE_SUFFIX')
+    module_pattern = module_pattern_prefix + kernel_package_name + '-module-%s' + module_pattern_suffix
+
+    modules = do_split_packages(d, root='${nonarch_base_libdir}/modules', file_regex=module_regex, output_pattern=module_pattern, description='%s kernel module', postinst=postinst, postrm=postrm, recursive=True, hook=frob_metadata, extra_depends='%s-%s' % (kernel_package_name, kernel_version))
+    if modules:
+        d.appendVar('RDEPENDS:' + metapkg, ' '+' '.join(modules))
+
+    # If modules-load.d and modprobe.d are empty at this point, remove them to
+    # avoid warnings. removedirs only raises an OSError if an empty
+    # directory cannot be removed.
+    dvar = d.getVar('PKGD')
+    for dir in ["%s/etc/modprobe.d" % (dvar), "%s/etc/modules-load.d" % (dvar), "%s/etc" % (dvar)]:
+        if len(os.listdir(dir)) == 0:
+            os.rmdir(dir)
+
+split_kernel_module_packages(d)
+
+def legitimize_package_name(s):
+    """
+    Make sure package names are legitimate strings
+    """
+    import re
+
+    def fixutf(m):
+        cp = m.group(1)
+        if cp:
+            return ('\\u%s' % cp).encode('latin-1').decode('unicode_escape')
+
+    # Handle unicode codepoints encoded as <U0123>, as in glibc locale files.
+    s = re.sub(r'<U([0-9A-Fa-f]{1,4})>', fixutf, s)
+
+    # Remaining package name validity fixes
+    return s.lower().replace('_', '-').replace('@', '+').replace(',', '+').replace('/', '-')
+
+def do_split_packages(d, root, file_regex, output_pattern, description, postinst=None, recursive=False, hook=None, extra_depends=None, aux_files_pattern=None, postrm=None, allow_dirs=False, prepend=False, match_path=False, aux_files_pattern_verbatim=None, allow_links=False, summary=None):
+    """
+    Used in .bb files to split up dynamically generated subpackages of a
+    given package, usually plugins or modules.
+
+    Arguments:
+    root           -- the path in which to search
+    file_regex     -- regular expression to match searched files. Use
+                      parentheses () to mark the part of this expression
+                      that should be used to derive the module name (to be
+                      substituted where %s is used in other function
+                      arguments as noted below)
+    output_pattern -- pattern to use for the package names. Must include %s.
+    description    -- description to set for each package. Must include %s.
+    postinst       -- postinstall script to use for all packages (as a
+                      string)
+    recursive      -- True to perform a recursive search - default False
+    hook           -- a hook function to be called for every match. The
+                      function will be called with the following arguments
+                      (in the order listed):
+                        f: full path to the file/directory match
+                        pkg: the package name
+                        file_regex: as above
+                        output_pattern: as above
+                        modulename: the module name derived using file_regex
+    extra_depends  -- extra runtime dependencies (RDEPENDS) to be set for
+                      all packages. The default value of None causes a
+                      dependency on the main package (${PN}) - if you do
+                      not want this, pass '' for this parameter.
+    aux_files_pattern -- extra item(s) to be added to FILES for each
+                      package. Can be a single string item or a list of
+                      strings for multiple items.  Must include %s.
+    postrm         -- postrm script to use for all packages (as a string)
+    allow_dirs     -- True allow directories to be matched - default False
+    prepend        -- if True, prepend created packages to PACKAGES instead
+                      of the default False which appends them
+    match_path     -- match file_regex on the whole relative path to the
+                      root rather than just the file name
+    aux_files_pattern_verbatim -- extra item(s) to be added to FILES for
+                      each package, using the actual derived module name
+                      rather than converting it to something legal for a
+                      package name. Can be a single string item or a list
+                      of strings for multiple items. Must include %s.
+    allow_links    -- True to allow symlinks to be matched - default False
+    summary        -- Summary to set for each package. Must include %s;
+                      defaults to description if not set.
+
+    """
+
+    dvar = d.getVar('PKGD')
+    root = d.expand(root)
+    output_pattern = d.expand(output_pattern)
+    extra_depends = d.expand(extra_depends)
+
+    # If the root directory doesn't exist, don't error out later but silently do
+    # no splitting.
+    if not os.path.exists(dvar + root):
+        return []
+
+    ml = d.getVar("MLPREFIX")
+    if ml:
+        if not output_pattern.startswith(ml):
+            output_pattern = ml + output_pattern
+
+        newdeps = []
+        for dep in (extra_depends or "").split():
+            if dep.startswith(ml):
+                newdeps.append(dep)
+            else:
+                newdeps.append(ml + dep)
+        if newdeps:
+            extra_depends = " ".join(newdeps)
+
+
+    packages = d.getVar('PACKAGES').split()
+    split_packages = set()
+
+    if postinst:
+        postinst = '#!/bin/sh\n' + postinst + '\n'
+    if postrm:
+        postrm = '#!/bin/sh\n' + postrm + '\n'
+    if not recursive:
+        objs = os.listdir(dvar + root)
+    else:
+        objs = []
+        for walkroot, dirs, files in os.walk(dvar + root):
+            for file in files:
+                relpath = os.path.join(walkroot, file).replace(dvar + root + '/', '', 1)
+                if relpath:
+                    objs.append(relpath)
+
+    if extra_depends == None:
+        extra_depends = d.getVar("PN")
+
+    if not summary:
+        summary = description
+
+    for o in sorted(objs):
+        import re, stat
+        if match_path:
+            m = re.match(file_regex, o)
+        else:
+            m = re.match(file_regex, os.path.basename(o))
+
+        if not m:
+            continue
+        f = os.path.join(dvar + root, o)
+        mode = os.lstat(f).st_mode
+        if not (stat.S_ISREG(mode) or (allow_links and stat.S_ISLNK(mode)) or (allow_dirs and stat.S_ISDIR(mode))):
+            continue
+        on = legitimize_package_name(m.group(1))
+        pkg = output_pattern % on
+        split_packages.add(pkg)
+        if not pkg in packages:
+            if prepend:
+                packages = [pkg] + packages
+            else:
+                packages.append(pkg)
+        oldfiles = d.getVar('FILES:' + pkg)
+        newfile = os.path.join(root, o)
+        # These names will be passed through glob() so if the filename actually
+        # contains * or ? (rare, but possible) we need to handle that specially
+        newfile = newfile.replace('*', '[*]')
+        newfile = newfile.replace('?', '[?]')
+        if not oldfiles:
+            the_files = [newfile]
+            if aux_files_pattern:
+                if type(aux_files_pattern) is list:
+                    for fp in aux_files_pattern:
+                        the_files.append(fp % on)
+                else:
+                    the_files.append(aux_files_pattern % on)
+            if aux_files_pattern_verbatim:
+                if type(aux_files_pattern_verbatim) is list:
+                    for fp in aux_files_pattern_verbatim:
+                        the_files.append(fp % m.group(1))
+                else:
+                    the_files.append(aux_files_pattern_verbatim % m.group(1))
+            d.setVar('FILES:' + pkg, " ".join(the_files))
+        else:
+            d.setVar('FILES:' + pkg, oldfiles + " " + newfile)
+        if extra_depends != '':
+            d.appendVar('RDEPENDS:' + pkg, ' ' + extra_depends)
+        if not d.getVar('DESCRIPTION:' + pkg):
+            d.setVar('DESCRIPTION:' + pkg, description % on)
+        if not d.getVar('SUMMARY:' + pkg):
+            d.setVar('SUMMARY:' + pkg, summary % on)
+        if postinst:
+            d.setVar('pkg_postinst:' + pkg, postinst)
+        if postrm:
+            d.setVar('pkg_postrm:' + pkg, postrm)
+        if callable(hook):
+            hook(f, pkg, file_regex, output_pattern, m.group(1))
+
+    d.setVar('PACKAGES', ' '.join(packages))
+    return list(split_packages)
+

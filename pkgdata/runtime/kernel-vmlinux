@@ -1,0 +1,13 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION: Linux kernel based on mainline kernel used by FSL Community BSP in order to provide support for some backported features and fixes, or because it was applied in linux-next and takes some time to become part of a stable version, or because it is not applicable for upstreaming.
+SUMMARY: FSL Community BSP Linux mainline based kernel with backported features and fixes
+SECTION: base
+PKG:kernel-vmlinux: kernel-vmlinux
+FILES:kernel-vmlinux: /boot/vmlinux-6.1.38-fslc+g085682f3fc7e
+FILES_INFO:kernel-vmlinux: {"/boot/vmlinux-6.1.38-fslc+g085682f3fc7e": 24331972}
+PKGSIZE:kernel-vmlinux: 24331972

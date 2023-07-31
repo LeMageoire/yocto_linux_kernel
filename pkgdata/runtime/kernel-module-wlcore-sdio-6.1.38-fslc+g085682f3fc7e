@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: wlcore-sdio kernel module
+SUMMARY:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: wlcore-sdio kernel module
+RDEPENDS:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: kernel-module-wlcore-sdio
+SECTION: base
+PKG:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/.debug/wlcore_sdio.ko /etc/modules-load.d/wlcore_sdio.conf /etc/modprobe.d/wlcore_sdio.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko /etc/modules-load.d/wlcore_sdio.conf /etc/modprobe.d/wlcore_sdio.conf
+CONFFILES:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/wlcore_sdio.conf /etc/modprobe.d/wlcore_sdio.conf /etc/modules-load.d/wlcore_sdio.conf /etc/modprobe.d/wlcore_sdio.conf
+FILES_INFO:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko": 15764}
+pkg_postinst:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-wlcore-sdio-6.1.38-fslc+g085682f3fc7e: 15764

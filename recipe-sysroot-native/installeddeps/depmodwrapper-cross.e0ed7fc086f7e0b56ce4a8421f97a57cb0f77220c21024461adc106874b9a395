@@ -1,0 +1,6 @@
+recipe-sysroot/sysroot-providers/depmodwrapper-cross
+recipe-sysroot/usr/bin/crossscripts/depmodwrapper
+recipe-sysroot/usr/bin/crossscripts/
+recipe-sysroot/sysroot-providers/
+recipe-sysroot/usr/bin/
+recipe-sysroot/usr/

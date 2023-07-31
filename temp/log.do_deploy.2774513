@@ -1,0 +1,317 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc_6.1.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/binutils/binutils-cross_2.38.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/gcc/gcc-cross_11.3.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/bison/bison_3.8.2.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pkgconfig/pkgconfig_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-extended/bc/bc_1.07.1.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-extended/pigz/pigz_2.7.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kmod/kmod_29.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['linux-fslc', 'pigz-native']
+NOTE: Skipping as already exists in sysroot: ['binutils-cross-arm', 'gcc-cross-arm', 'quilt-native', 'kern-tools-native', 'depmodwrapper-cross', 'bison-native', 'patch-native', 'pkgconfig-native', 'pseudo-native', 'bc-native', 'kmod-native', 'zlib-native', 'libtool-native', 'flex-native', 'mpfr-native', 'xz-native', 'libmpc-native', 'zstd-native', 'linux-libc-headers', 'texinfo-dummy-native', 'gmp-native', 'gnu-config-native', 'readline-native', 'attr-native', 'python3-native', 'gettext-minimal-native', 'm4-native', 'ncurses-native', 'sqlite3-native', 'openssl-native', 'libnsl2-native', 'bzip2-native', 'libtirpc-native', 'gdbm-native', 'util-linux-libuuid-native', 'libffi-native', 'perl-native', 'make-native']
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing python function read_subpackage_metadata
+DEBUG: Python function read_subpackage_metadata finished
+DEBUG: Executing shell function do_deploy
+tar: Option --mtime: Treating date '@1689355056' as 2023-07-14 17:17:36
+lib/
+lib/modules/
+lib/modules/6.1.38-fslc+g085682f3fc7e/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/dmatest.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/dma/imx-sdma.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpio/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpio/gpio-siox.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/drm/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/drm/bridge/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/drm/bridge/synopsys/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/algos/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/algos/i2c-algo-pca.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/i2c/algos/i2c-algo-pcf.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/mouse/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/mouse/psmouse.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/serio/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/input/serio/serport.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/irqchip/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/irqchip/irq-imx-mu-msi.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/a8293.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/af9013.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/af9033.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ascot2e.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/atbm8830.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_common.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_decoder.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/au8522_dig.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/bcm3510.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx22700.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx22702.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24110.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24113.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24116.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24117.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24120.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24123.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2099.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2820r.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2841er.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2880/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cxd2880/cxd2880.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib0070.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib0090.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib3000mb.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib3000mc.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000m.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib7000p.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib8000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dib9000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dibx000_common.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drx39xyj/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drx39xyj/drx39xyj.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxd.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxk.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ds3000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/dvb-pll.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ec100.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/helene.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/horus3a.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6405.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6421.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6423.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/itd1000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ix2505v.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/l64781.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lg2160.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt3305.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt3306a.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgdt330x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgs8gl5.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lgs8gxx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbh25.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbh29.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbp21.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/lnbp22.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/m88ds3103.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/m88rs2000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mb86a16.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mb86a20s.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88443x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88472.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mn88473.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mt312.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mt352.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mxl5xx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/mxl692.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/nxt200x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/nxt6000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/or51132.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/or51211.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2830.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2832.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/rtl2832_sdr.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1409.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1411.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1420.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s5h1432.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/s921.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si2165.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si2168.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/si21xx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/sp2.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/sp887x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb0899.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb6000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stb6100.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0288.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0297.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0299.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0367.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0900.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv090x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv0910.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6110.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6110x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/stv6111.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tc90522.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10021.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10023.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10048.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda1004x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10071.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10086.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda18271c2dd.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda665x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda8083.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda8261.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda826x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ts2020.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tua6100.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ves1820.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/ves1x93.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zd1301_demod.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10036.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10039.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/zl10353.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/adv7180.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov2680.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov5640.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/i2c/ov5645.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/coda-vpu.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/platform/chips-media/imx-vdoa.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/spi/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/spi/cxd2880-spi.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/e4000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0011.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0012.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc0013.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/fc2580.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/it913x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/m88rs6000t.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/max2165.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mc44s803.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/msi001.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2060.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2063.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt20xx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2131.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mt2266.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl301rf.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5005s.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/mxl5007t.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qm1d1b0004.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qm1d1c0042.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/qt1010.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/r820t.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/si2157.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18212.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18218.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18250.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda18271.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda827x.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda8290.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tda9887.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5761.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tea5767.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tua9001.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tuner-simple.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/tuner-types.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc2028.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc4000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/xc5000.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/usb/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/usb/uvc/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/usb/uvc/uvcvideo.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/v4l2-core/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/v4l2-core/v4l2-jpeg.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/cdc_eem.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/pegasus.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/usb/rtl8150.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_core.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ath/ath10k/ath10k_sdio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_pcie.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/marvell/mwifiex/mwifiex_sdio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl12xx/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl12xx/wl12xx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl18xx/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wl18xx/wl18xx.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/power/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/power/supply/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/power/supply/rn5t618_power.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/siox/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/siox/siox-bus-gpio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/siox/siox-core.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/class/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/class/cdc-acm.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_audio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ether.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ffs.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_mass_storage.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_ncm.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_serial.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/g_zero.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/gadgetfs.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/misc/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/misc/ehset.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/misc/usbtest.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/ftdi_sio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/option.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/usb_wwan.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/serial/usbserial.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/watchdog/da9063_wdt.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/binfmt_misc.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/msdos.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/isofs/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/isofs/isofs.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/nls/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/nls/nls_iso8859-15.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/udf/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/udf/udf.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/crc-itu-t.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/crc7.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/lib/libcrc32c.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/net/bluetooth/bnep/bnep.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/core/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/core/snd-hwdep.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usb-audio.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/sound/usb/snd-usbmidi-lib.ko
+lib/modules/6.1.38-fslc+g085682f3fc7e/modules.builtin
+lib/modules/6.1.38-fslc+g085682f3fc7e/modules.builtin.modinfo
+lib/modules/6.1.38-fslc+g085682f3fc7e/modules.order
+DEBUG: Shell function do_deploy finished
+DEBUG: Executing python function sstate_task_postfunc
+NOTE: Using umask 0o002 (not 22) for sstate packaging
+DEBUG: Preparing tree /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/deploy-linux-fslc for packaging at /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-deploy/deploy-linux-fslc
+DEBUG: Executing python function target_add_sysroot_deps
+DEBUG: Python function target_add_sysroot_deps finished
+DEBUG: Executing python function sstate_hardcode_path
+NOTE: Removing hardcoded paths from sstate package: 'find /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-deploy/ \( -name "*.la" -o -name "*-config" -o -name "*_config" -o -name "postinst-*" \) -type f | xargs grep -l -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools' | tee /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-deploy/fixmepath | xargs --no-run-if-empty sed -i -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:FIXMESTAGINGDIRHOST:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:FIXMESTAGINGDIRTARGET:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:FIXME_HOSTTOOLS_DIR:g''
+DEBUG: Python function sstate_hardcode_path finished
+DEBUG: Executing python function sstate_report_unihash
+DEBUG: Reported task d102719930e7fa88d4cacfe8e2b8acd04c602eae8e9314a5c98571272f9e02b1 as unihash d102719930e7fa88d4cacfe8e2b8acd04c602eae8e9314a5c98571272f9e02b1 to unix:///home/lemageoire/fsl-community-bsp/build-openrex/hashserve.sock
+DEBUG: Python function sstate_report_unihash finished
+DEBUG: Executing shell function sstate_create_package
+DEBUG: Shell function sstate_create_package finished
+DEBUG: Executing python function sstate_hardcode_path_unpack
+DEBUG: Python function sstate_hardcode_path_unpack finished
+DEBUG: Executing python function uninative_changeinterp
+DEBUG: Python function uninative_changeinterp finished
+DEBUG: Staging files from /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/deploy-linux-fslc to /home/lemageoire/fsl-community-bsp/build-openrex/tmp/deploy/images/imx6qdlsabresd
+DEBUG: Python function sstate_task_postfunc finished

@@ -1,0 +1,5 @@
+DEBUG: Executing shell function do_kernel_checkout
+Already on '6.1.x+fslc'
+Your branch is behind 'origin/6.1.x+fslc' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+DEBUG: Shell function do_kernel_checkout finished

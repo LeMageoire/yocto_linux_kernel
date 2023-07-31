@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: drxk kernel module; DRX-K driver
+SUMMARY:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: drxk kernel module
+RDEPENDS:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: kernel-module-drxk
+SECTION: base
+PKG:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: kernel-module-drxk-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/drxk.ko /etc/modules-load.d/drxk.conf /etc/modprobe.d/drxk.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxk.ko /etc/modules-load.d/drxk.conf /etc/modprobe.d/drxk.conf
+CONFFILES:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/drxk.conf /etc/modprobe.d/drxk.conf /etc/modules-load.d/drxk.conf /etc/modprobe.d/drxk.conf
+FILES_INFO:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/drxk.ko": 62412}
+pkg_postinst:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-drxk-6.1.38-fslc+g085682f3fc7e: 62412

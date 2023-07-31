@@ -1,0 +1,583 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+
+#  Copyright (c) 2009-2016 Wind River Systems, Inc.
+
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License version 2 as
+#  published by the Free Software Foundation.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+
+# Basic sanity checks on the kernel fragments, i.e. whether a BSP
+# is setting things it shouldn't, whether things are redefined,
+# and whether what you asked for is what you got.
+
+
+# For consistent behaviour with "grep -w"
+LC_ALL=C
+export LC_ALL
+
+usage() {
+    cat << EOF
+
+ kconf_check [--help] [--report] [--meta <dir>] [--artifacts <output dir>] [--force] [-v] <path>/.config <kernel source> <fragments or CONFIG_>
+
+      --help:           This message
+      --force:          force overwrite output file if it already exists
+      -v:               verbose output
+      --report:         Generate a summary of issues
+      --meta:           path to optional meta data (option classification)
+      --artifacts:      directory to store artifacts
+      .config:          .config to check
+      kernel source:    kernel source tree
+      fragments:        fragments to check
+      CONFIG_:          command line options to check (CONFIG_FOO=<blah>)
+
+
+EOF
+}
+
+if [ -z "$1" ]; then
+    usage
+    exit 1
+fi
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+	--help)
+	    usage
+	    exit
+	    ;;
+	--force|-f)
+	    force=t
+	    ;;
+        --meta)
+            metadata=$2
+            shift
+            ;;
+        --report)
+            report=t
+            ;;
+        --artifacts|-o)
+            artifacts_dir=$2
+            shift
+            ;;
+	-w)
+	    warn_on_missing=t
+	    ;;
+	-v) verbose=t
+	    ;;
+	*) break
+	   ;;
+    esac
+    shift
+done
+
+
+# $1 is the .config
+# $2 is the source tree
+# $3 are the configuration fragments
+dot_config=$1
+shift
+kernel_source=$1
+shift
+config_frags=$@
+
+if [ ! -f "${dot_config}" ]; then
+    echo "[ERROR]. Could not find .config (${dot_config})"
+    exit 1
+fi
+
+if [ ! -f "${kernel_source}/Makefile" ]; then
+    echo "[ERROR]. Could not find kernel source in directory ${kernel_source}"
+    exit 1
+fi
+
+if [ -d ".kernel-meta" ]; then
+    if [ -z "${metadata}" ]; then
+        metadata=.kernel-meta
+    fi
+fi
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: checking dot config: ${dot_config}"
+    echo "        Against kernel source: ${kernel_source}"
+    echo "        Against fragments: ${config_frags}"
+    if [ -n "${metadata}" ]; then
+        echo "        Against meta data: ${metadata}"
+    fi
+fi
+
+# This is used to filter out duplicate declarations within a single fragment.
+# People shouldn't do this, but we must behave predictably if they do...
+# Also check for lines that start with "# CONFIG_" but don't end with the all
+# so important " is not set" -- as this always seems to surprise people who
+# think the leading hash is all that matters.
+function sanitize_fragment ()
+{
+	ORIG_FRAG=$1
+	CLEAN_FRAG=$2
+
+	rm -f $CLEAN_FRAG
+	touch $CLEAN_FRAG
+	CFG_LIST=`grep '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*[=\( is not set\)]' \
+	  $ORIG_FRAG | sed 's/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/'`
+
+	for i in $CFG_LIST ; do
+		LASTVAL=`grep -w $i $ORIG_FRAG | tail -n1`
+		echo $LASTVAL|grep -q '^# CONFIG_'
+		HEAD_OK=$?
+		echo $LASTVAL|grep -q ' is not set$'
+		TAIL_OK=$?
+
+		echo $LASTVAL | grep -q '.* ='
+		if [ $? -eq 0 ]; then
+			space_before_equals=t
+		fi
+		echo $LASTVAL | grep -q '= '
+		if [ $? -eq 0 ]; then
+			space_after_equals=t
+		fi
+
+		grep -q -w $i $CLEAN_FRAG
+		if [ $? == 0 ] ; then	
+			echo Warning: Value of $i is defined multiple times within fragment $ORIG_FRAG:
+			grep -w $i $ORIG_FRAG
+			echo
+		elif [ $HEAD_OK -eq 0 ] && [ $TAIL_OK -ne 0 ]; then
+			# Enforce proper "# CONFIG_FOO is not set" syntax.
+			# LKC would ignore it anyway, so let them know.
+			echo Warning: Ignoring \"$LASTVAL\" -- invalid CONFIG syntax.
+		elif [ -n "$space_before_equals" ] || [ -n "$space_after_equals" ]; then
+			echo Warning: Ignoring \"$LASTVAL\" -- spaces around equals are invalid
+		else
+			echo $LASTVAL >> $CLEAN_FRAG
+		fi
+	done
+}
+
+# This function takes a fragment, and looks in its directory to see
+# if there are classifers. We take those classifiers and put them into
+# files that we can check later.
+function classify_options() {
+    local frag=$1
+    local frag_dir=$(dirname ${frag})
+
+    # Possible fixme -- could check hdw additions against the non-hdw
+    # and vice versa -- it would allow folks to mask things.
+    # See alternate solution just at the bottom of this loop.
+    if [ -f $frag_dir/non-hardware.kcf ]; then
+	cat $frag_dir/non-hardware.kcf | grep -v '^#' | \
+	    sed '/^$/d' >> $KCONF_NONHDW
+    fi
+    if [ -f $frag_dir/hardware.kcf ]; then
+	cat $frag_dir/hardware.kcf | grep -v '^#' | \
+	    sed '/^$/d' >> $KCONF_HDW
+    fi
+    if [ -f $frag_dir/non-hardware.cfg ]; then
+	cat $frag_dir/non-hardware.cfg | grep -v '^#' | \
+	    sed '/^$/d' >> $CONF_NONHDW
+    fi
+    if [ -f $frag_dir/hardware.cfg ]; then
+	cat $frag_dir/hardware.cfg | grep -v '^#' | \
+	    sed '/^$/d' >> $CONF_HDW
+    fi
+    if [ -f $frag_dir/required.cfg ]; then
+	cat $frag_dir/required.cfg | grep -v '^#' | \
+	    sed '/^$/d' >> $CONF_REQUIRED
+    fi
+    if [ -f $frag_dir/optional.cfg ]; then
+	cat $frag_dir/optional.cfg | grep -v '^#' | \
+	    sed '/^$/d' >> $CONF_OPTIONAL
+    fi
+}
+
+# Temporary files to store sanitized list and fragment errors.
+# Create those files in /tmp because /tmp in most cases is stored in RAM
+# This greatly increases performance, as we will append data to those files
+# and some file systems (like ZFS) are very slow at appends.
+FRAGMENT_ERRORS_TMP=`mktemp`
+SANITIZED_LIST_TMP=`mktemp`
+
+# Clean temporary files from /tmp on exit
+function cleanup {
+    rm -f $FRAGMENT_ERRORS_TMP
+    rm -f $SANITIZED_LIST_TMP
+}
+
+trap cleanup EXIT
+
+# step #1.
+# run merge_config.sh (without regenerating the .config), and capture its output.
+# This gets us redefined options, and a combined (but unprocessed) config.
+#
+if [ -n "${artifacts_dir}" ]; then
+    LOGDIR=${artifacts_dir}
+else
+    LOGDIR=".kconf_scratch"
+fi
+mkdir -p ${LOGDIR}
+
+# On the fly list of all known hardware related Kconfig* files
+KCONF_HDW=$LOGDIR/hardware.kcf
+# Same for all known non-hardware related Kconfig* files
+KCONF_NONHDW=$LOGDIR/non-hardware.kcf
+rm -f ${KCONF_HDW}
+rm -f ${KCONF_NONHDW}
+touch ${KCONF_HDW}
+touch ${KCONF_NONHDW}
+
+# On the fly override for hardware CONFIG items that are in a non-hardware Kconfig.
+# These are used to prevent warnings
+CONF_HDW=$LOGDIR/always_hardware.cfg
+# Same for non-hardware CONFIG items that are in a hardware Kconfig.
+CONF_NONHDW=$LOGDIR/always_nonhardware.cfg
+rm -f ${CONF_HDW}
+rm -f ${CONF_NONHDW}
+
+CONF_REQUIRED=$LOGDIR/required_configs.cfg
+CONF_OPTIONAL=$LOGDIR/optional_configs.cfg
+
+# step #2.
+# find all the Kconfig* files in the source dir, we'll use this for invalid
+# option checking later
+#
+find ${kernel_source} \
+     -path $kernel_source/.kernel-meta -prune				\
+     -o -path $kernel_source/.git -prune		                \
+     -o -type f -a -name 'Kconfig*' -print |				\
+    sort | sed 's=^'$kernel_source'==' |                                \
+    sed 's%^/%%' > ${LOGDIR}/all.kcf
+
+
+# Collect the list of all avail related CONFIG_ options from the
+# known list of all Kconfig* files.  Again, must filter dups.
+rm -f ${LOGDIR}/all.cfg
+for i in `cat ${LOGDIR}/all.kcf` ; do
+    cat ${kernel_source}/$i | grep '^[ 	]*\(menu\)*config' | \
+	awk '{print "CONFIG_"$2}' >> ${LOGDIR}/all.cfg
+done
+mv -f ${LOGDIR}/all.cfg ${LOGDIR}/all.cfg~
+cat ${LOGDIR}/all.cfg~ | sort | uniq > ${LOGDIR}/all.cfg
+rm -f ${LOGDIR}/all.cfg~
+
+# This is the .config passed on the command line. This .config has been
+# processed by the kernel build process
+dot_config=$(readlink -f ${dot_config})
+
+# take any command line options, and wrap them in a .cfg, so we don't have
+# to treat them as special.
+rm -f ${LOGDIR}/cmd_line_frag.cfg
+touch ${LOGDIR}/cmd_line_frag.cfg
+for c in ${config_frags}; do
+    case ${c} in
+        CONFIG_*)
+            echo ${c} >> ${LOGDIR}/cmd_line_frag.cfg
+            ;;
+        *)
+            configs_abs="${configs_abs} $(readlink -f ${c})"
+            ;;
+    esac
+done
+if [ -s "${LOGDIR}/cmd_line_frag.cfg" ]; then
+    configs_abs="${configs_abs} $(readlink -f ${LOGDIR}/cmd_line_frag.cfg)"
+fi
+
+# Step 3.
+# run merge_config to look for repeated options, etc. We redirect the output
+# to our log directory, so we can process things later.
+#
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: creating merged config"
+    echo "        merge_config.sh -O ${LOGDIR} -m ${configs_abs}"
+fi
+merge_config.sh -O ${LOGDIR} -m ${configs_abs} &> ${LOGDIR}/merge_config_audit.log
+
+if [ -n "${metadata}" ]; then
+    if [ -n "${verbose}" ]; then
+        echo "[INFO]: meta data detected, classifying config options"
+    fi
+fi
+
+# check for per-fragment errors
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: checking for per fragment errors"
+fi
+SED_CONFIG_EXP="s/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/p"
+rm -f ${LOGDIR}/fragment_errors.txt
+declare -A CONFIGMAP
+for c in ${configs_abs}; do
+    sanitize_fragment ${c} $SANITIZED_LIST_TMP >> $FRAGMENT_ERRORS_TMP
+    cfg_list=$(sed -n "$SED_CONFIG_EXP" ${c})
+    for option in ${cfg_list}; do
+        if [ -z "${CONFIGMAP[${option}]}" ]; then
+            CONFIGMAP[${option}]=${c}
+        else
+            CONFIGMAP[${option}]="${CONFIGMAP[${option}]} ${c}"
+        fi
+    done
+
+    if [ -n "${metadata}" ]; then
+        classify_options ${c}
+    fi
+done
+
+mv $FRAGMENT_ERRORS_TMP ${LOGDIR}/fragment_errors.txt
+mv $SANITIZED_LIST_TMP ${LOGDIR}/sanitized_list
+
+# If we had meta data, we can use the classifications to group the options.
+if [ -n "${metadata}" ]; then
+    rm -f $LOGDIR/avail_hardware.cfg
+    for i in `cat $KCONF_HDW` ; do
+	if [ -f ${kernel_source}/$i ] ; then
+	    cat ${kernel_source}/$i | grep '^\(menu\)*config ' | \
+		awk '{print "CONFIG_"$2}' >> $LOGDIR/avail_hardware.cfg
+	fi
+    done
+
+    # The following files come from the processing of the meta data (i.e. if scc/spp was used):
+    #    hardware_frags.txt
+    #    non-hardware_frags.txt
+    #    required_frags.txt
+    #    optional_frags.txt
+
+    rm -f $LOGDIR/input_hardware_configs.cfg~
+    touch $LOGDIR/input_hardware_configs.cfg
+    if [ -s "${metadata}/hardware_frags.txt" ]; then
+        for i in `cat ${metadata}/hardware_frags.txt` ; do
+            cat $i | \
+                grep '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*[=\( is not set\)]' | \
+                sed 's/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/' \
+                    >> $LOGDIR/input_hardware_configs.cfg~
+        done
+        if [ -e $LOGDIR/input_hardware_configs.cfg~ ]; then
+            sort < $LOGDIR/input_hardware_configs.cfg~ | uniq > $LOGDIR/input_hardware_configs.cfg
+        fi
+        rm -f $KCONF_DIR/input_hardware_configs.cfg~
+    fi
+
+    # and non-hardware!
+    rm -f $LOGDIR/input_nonhardware_configs.cfg~
+    touch $LOGDIR/input_nonhardware_configs.cfg
+    if [ -s "${metadata}/non-hardware_frags.txt" ]; then
+        for i in `cat ${metadata}/non-hardware_frags.txt` ; do
+            cat $i | \
+                grep -e '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*[=\( is not set\)]' -e '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*' | \
+                sed 's/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/' \
+                    >> $LOGDIR/input_nonhardware_configs.cfg~
+        done
+        if [ -e $LOGDIR/input_nonhardware_configs.cfg~ ]; then
+            sort < $LOGDIR/input_nonhardware_configs.cfg~ | uniq > $LOGDIR/input_nonhardware_configs.cfg
+        fi
+        rm -f $KCONF_DIR/input_nonhardware_configs.cfg~
+    fi
+
+    # and required!
+    rm -f $LOGDIR/input_required_configs.cfg~
+    touch $LOGDIR/input_required_configs.cfg
+    if [ -s "${metadata}/required_frags.txt" ]; then
+        for i in `cat ${metadata}/required_frags.txt` ; do
+            cat $i | \
+                grep '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*[=\( is not set\)]' | \
+                sed 's/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/' \
+                    >> $LOGDIR/input_required_configs.cfg~
+        done
+        if [ -e $LOGDIR/input_required_configs.cfg~ ]; then
+            sort < $LOGDIR/input_required_configs.cfg~ | uniq > $LOGDIR/input_required_configs.cfg
+        fi
+        rm -f $KCONF_DIR/input_required_configs.cfg~
+    fi
+
+    # and optional!
+    rm -f $LOGDIR/input_optional_configs.cfg~
+    touch $LOGDIR/input_optional_configs.cfg
+    if [ -s "${metadata}/optional_frags.txt" ]; then
+        for i in `cat ${metadata}/optional_frags.txt` ; do
+            cat $i | \
+                grep '^\(# \)\{0,1\}CONFIG_[a-zA-Z0-9_]*[=\( is not set\)]' | \
+                sed 's/^\(# \)\{0,1\}\(CONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/' \
+                    >> $LOGDIR/input_optional_configs.cfg~
+        done
+        if [ -e $LOGDIR/input_optional_configs.cfg~ ]; then
+            sort < $LOGDIR/input_optional_configs.cfg~ | uniq > $LOGDIR/input_optional_configs.cfg
+        fi
+        rm -f $KCONF_DIR/input_optional_configs.cfg~
+    fi
+fi
+
+# Debug: dump all the configs and what fragment they came from
+# for K in "${!CONFIGMAP[@]}"; do
+#    echo $K --- ${CONFIGMAP[$K]};
+# done
+
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: checking for redefinitions"
+fi
+# break the merge log down into parts that can be processed later
+grep -A2 "^Value of" ${LOGDIR}/merge_config_audit.log > ${LOGDIR}/redefinition.txt
+
+# The tmp .config is one that merge_config assembled, but didn't run through
+# the actual kernel configuration. We check that against the one passed to this
+# script, that WAS run throught he process.
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: checking for dropped CONFIG_ entries"
+fi
+rm -f ${LOGDIR}/mismatch.cfg
+rm -f ${LOGDIR}/mismatch.txt
+TMP_FILE="${LOGDIR}/.config"
+for CFG in $(sed -n "$SED_CONFIG_EXP" $TMP_FILE); do
+    REQUESTED_VAL=$(grep -w -e "$CFG" $TMP_FILE)
+    ACTUAL_VAL=$(grep -w -e "$CFG" ${dot_config})
+
+    # special case. If someone asked for # CONFIG_FOO is not set and CONFIG_FOO
+    # doesn't appear in the final .config, this is not a mismatch .. it is a
+    # variant of what they wanted. This allows common fragments to set things,
+    # but for a specific BSP to cleanly override them (without declaring them as
+    # "non hw") when you know dependencies won't be met.
+    asked_for_not_set=
+    log_mismatch=t
+    echo "$REQUESTED_VAL" | grep -q "is not set"
+    if [ $? -eq 0 ]; then
+        asked_for_not_set=t
+    fi
+
+    if [ "x$REQUESTED_VAL" != "x$ACTUAL_VAL" ] ; then
+        if [ -n "$asked_for_not_set" ] && [ "$ACTUAL_VAL" = "" ]; then
+            log_mismatch=
+        fi
+        if [ -n "${log_mismatch}" ]; then
+            echo "Config: $CFG" >> ${LOGDIR}/mismatch.txt
+            echo "From: ${CONFIGMAP[$CFG]}" >> ${LOGDIR}/mismatch.txt
+            echo "Requested value:  $REQUESTED_VAL" >> ${LOGDIR}/mismatch.txt
+            echo "Actual value:     $ACTUAL_VAL" >> ${LOGDIR}/mismatch.txt
+            echo "" >> ${LOGDIR}/mismatch.txt
+            echo $CFG >> ${LOGDIR}/mismatch.cfg
+        fi
+    fi
+done
+
+# Find the options that are just obsolete trash and don't exist in any
+# file whatsoever (leftovers from kernel uprev, etc etc)
+if [ -n "${verbose}" ]; then
+    echo "[INFO]: checking for invalid/obsolete CONFIG_ entries"
+fi
+rm -f ${LOGDIR}/invalid.cfg
+touch ${LOGDIR}/invalid.cfg
+for i in "${!CONFIGMAP[@]}"; do
+    grep -q -x -e $i ${LOGDIR}/all.cfg
+    if [ $? != 0 ]; then
+	echo $i >> ${LOGDIR}/invalid.cfg
+    fi
+done
+
+# we are done if no report has been requested
+if [ -z "${report}" ]; then
+    exit 0
+fi
+
+output_report_header()
+{
+    echo ""
+    echo "kernel config audit results"
+    echo "==========================="
+}
+
+if [ -s $LOGDIR/invalid.cfg ]; then
+    reported=t
+    OPT_COUNT=`wc -l $LOGDIR/invalid.cfg | awk '{print $1}'`
+    echo -n "[invalid ($OPT_COUNT)]: "
+    echo $LOGDIR/invalid.cfg
+    echo "   This BSP sets config options that are not offered anywhere within this kernel"
+    echo
+fi
+
+if [ -s "$LOGDIR/fragment_errors.txt" ]; then
+    reported=t
+    OPT_COUNT=`cat $LOGDIR/fragment_errors.txt |grep Warning: | wc -l | awk '{print $1}'`
+    echo -n "[errors ($OPT_COUNT): "
+    echo $LOGDIR/fragment_errors.txt
+    echo "   There are errors withing the config fragments."
+    echo
+fi
+
+if [ -n "$verbose" ] && [ -s $LOGDIR/redefinition.txt ]; then
+    reported=t
+    OPT_COUNT=`cat $LOGDIR/redefinition.txt |grep Value | wc -l | awk '{print $1}'`
+    echo -n "[redefined ($OPT_COUNT)]: "
+    echo $LOGDIR/redefinition.txt
+    echo "   kernel configuration options were defined in more than one config"
+    echo "   fragment and had their value changed from their initial setting"
+    echo
+fi
+
+# One could argue that any mismatch is a valid reason to declare failure.
+if [ -s $LOGDIR/mismatch.txt ]; then
+    reported=t
+
+    # if there was meta data, and hence hardware classifications, we only
+    # report those options as missing. We also shouldn't report any that
+    # were invalid, since that is reported separately.
+    if [ -e "$LOGDIR/input_hardware_configs.cfg" ] || [ -e "$LOGDIR/input_required_configs.cfg" ]; then
+        rm -f $LOGDIR/mismatch-hardware.txt
+        cp $LOGDIR/mismatch.txt $LOGDIR/mismatch-all.txt
+        rm -f $LOGDIR/mismatch.txt
+
+        OPT_COUNT=0
+        for opt in `cat $LOGDIR/mismatch.cfg`; do
+            report=
+            grep -q -w $opt $LOGDIR/input_hardware_configs.cfg $LOGDIR/input_required_configs.cfg
+            if [ $? -eq 0 ]; then
+                # so we know it was a hardware option, and we should likely report it, but lets
+                # do another check .. if it isn't invalid, we should report it. If it is in the
+                # invalid list we skip it
+                inhibit_report=
+                grep -q -w $opt $LOGDIR/invalid.cfg
+                if [ $? -eq 0 ]; then
+                    inhibit_report=t
+                fi
+                grep -q -w $opt $LOGDIR/input_nonhardware_configs.cfg
+                if [ $? -eq 0 ]; then
+                    inhibit_report=t
+                fi
+                if [ -z "$inhibit_report" ]; then
+                    report=t
+                fi
+            fi
+
+            if [ -n "${report}" ]; then
+                let OPT_COUNT=$OPT_COUNT+1
+                echo "---------- $opt -----------------" >> $LOGDIR/mismatch.txt
+                grep -A4 "Config: $opt" $LOGDIR/mismatch-all.txt >> $LOGDIR/mismatch.txt
+
+                # drop CONFIG_ from the symbol name, since symbol_why doesn't expect it.
+                opt_to_check=$(echo $opt | sed 's%CONFIG_%%')
+                srctree=. CC=gcc ARCH=x86 symbol_why.py --dotconfig=${dot_config} --ksrc="." --conditions $opt_to_check >> $LOGDIR/mismatch.txt
+                echo "" >> $LOGDIR/mismatch.txt
+            fi
+        done
+        if [ $OPT_COUNT -gt 0 ]; then
+            echo -n "[mismatch ($OPT_COUNT)]: "
+            echo $LOGDIR/mismatch.txt
+            echo "   There were hardware options requested that do not"
+            echo "   have a corresponding value present in the final \".config\" file."
+            echo "   This probably means you aren't getting the config you wanted."
+            echo
+        fi
+    else
+        OPT_COUNT=`grep '^Actual value' $LOGDIR/mismatch.txt | wc -l | awk '{print $1}'`
+        echo -n "[mismatch ($OPT_COUNT)]: "
+        echo $LOGDIR/mismatch.txt
+        echo "   There were options requested that do not"
+        echo "   have a corresponding value present in the final \".config\" file."
+        echo "   This probably means you aren't getting the config you wanted."
+        echo
+    fi
+fi
+
+if [ -z "$reported" ]; then
+    echo "[kconfig] clean configuration. No Warnings or Errors found."
+fi
+

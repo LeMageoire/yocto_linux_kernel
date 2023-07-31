@@ -1,0 +1,76 @@
+def do_qa_patch(d):
+    import subprocess
+
+    ###########################################################################
+    # Check patch.log for fuzz warnings
+    #
+    # Further information on why we check for patch fuzz warnings:
+    # http://lists.openembedded.org/pipermail/openembedded-core/2018-March/148675.html
+    # https://bugzilla.yoctoproject.org/show_bug.cgi?id=10450
+    ###########################################################################
+
+    logdir = d.getVar('T')
+    patchlog = os.path.join(logdir,"log.do_patch")
+
+    if os.path.exists(patchlog):
+        fuzzheader = '--- Patch fuzz start ---'
+        fuzzfooter = '--- Patch fuzz end ---'
+        statement = "grep -e '%s' %s > /dev/null" % (fuzzheader, patchlog)
+        if subprocess.call(statement, shell=True) == 0:
+            msg = "Fuzz detected:\n\n"
+            fuzzmsg = ""
+            inFuzzInfo = False
+            f = open(patchlog, "r")
+            for line in f:
+                if fuzzheader in line:
+                    inFuzzInfo = True
+                    fuzzmsg = ""
+                elif fuzzfooter in line:
+                    fuzzmsg = fuzzmsg.replace('\n\n', '\n')
+                    msg += fuzzmsg
+                    msg += "\n"
+                    inFuzzInfo = False
+                elif inFuzzInfo and not 'Now at patch' in line:
+                    fuzzmsg += line
+            f.close()
+            msg += "The context lines in the patches can be updated with devtool:\n"
+            msg += "\n"
+            msg += "    devtool modify %s\n" % d.getVar('PN')
+            msg += "    devtool finish --force-patch-refresh %s <layer_path>\n\n" % d.getVar('PN')
+            msg += "Don't forget to review changes done by devtool!\n"
+            if bb.utils.filter('ERROR_QA', 'patch-fuzz', d):
+                bb.error(msg)
+            elif bb.utils.filter('WARN_QA', 'patch-fuzz', d):
+                bb.warn(msg)
+            msg = "Patch log indicates that patches do not apply cleanly."
+            oe.qa.handle_error("patch-fuzz", msg, d)
+
+    # Check if the patch contains a correctly formatted and spelled Upstream-Status
+    import re
+    from oe import patch
+
+    coremeta_path = os.path.join(d.getVar('COREBASE'), 'meta', '')
+    for url in patch.src_patches(d):
+       (_, _, fullpath, _, _, _) = bb.fetch.decodeurl(url)
+
+       # skip patches not in oe-core
+       if not os.path.abspath(fullpath).startswith(coremeta_path):
+           continue
+
+       kinda_status_re = re.compile(r"^.*upstream.*status.*$", re.IGNORECASE | re.MULTILINE)
+       strict_status_re = re.compile(r"^Upstream-Status: (Pending|Submitted|Denied|Accepted|Inappropriate|Backport|Inactive-Upstream)( .+)?$", re.MULTILINE)
+       guidelines = "https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations:_Upstream-Status"
+
+       with open(fullpath, encoding='utf-8', errors='ignore') as f:
+           file_content = f.read()
+           match_kinda = kinda_status_re.search(file_content)
+           match_strict = strict_status_re.search(file_content)
+
+           if not match_strict:
+               if match_kinda:
+                   bb.error("Malformed Upstream-Status in patch\n%s\nPlease correct according to %s :\n%s" % (fullpath, guidelines, match_kinda.group(0)))
+               else:
+                   bb.error("Missing Upstream-Status in patch\n%s\nPlease add according to %s ." % (fullpath, guidelines))
+
+do_qa_patch(d)
+

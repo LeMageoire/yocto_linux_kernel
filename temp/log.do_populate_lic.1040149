@@ -1,0 +1,26 @@
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing python function do_populate_lic
+DEBUG: Python function do_populate_lic finished
+DEBUG: Executing python function populate_lic_qa_checksum
+NOTE: linux-fslc: md5 checksum matched for file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46
+DEBUG: Python function populate_lic_qa_checksum finished
+DEBUG: Executing python function sstate_task_postfunc
+NOTE: Using umask 0o002 (not 22) for sstate packaging
+DEBUG: Preparing tree /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/license-destdir for packaging at /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_lic/license-destdir
+DEBUG: Executing python function target_add_sysroot_deps
+DEBUG: Python function target_add_sysroot_deps finished
+DEBUG: Executing python function sstate_hardcode_path
+NOTE: Removing hardcoded paths from sstate package: 'find /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_lic/ \( -name "*.la" -o -name "*-config" -o -name "*_config" -o -name "postinst-*" \) -type f | xargs grep -l -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native' -e '/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools' | tee /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/sstate-build-populate_lic/fixmepath | xargs --no-run-if-empty sed -i -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:FIXMESTAGINGDIRHOST:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:FIXMESTAGINGDIRTARGET:g' -e 's:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:FIXME_HOSTTOOLS_DIR:g''
+DEBUG: Python function sstate_hardcode_path finished
+DEBUG: Executing python function sstate_report_unihash
+DEBUG: Reported task c3692c3683cf28cd9ccc14fe48ea995b1cd66610716cfecb67012554806b2183 as unihash c3692c3683cf28cd9ccc14fe48ea995b1cd66610716cfecb67012554806b2183 to unix:///home/lemageoire/fsl-community-bsp/build-openrex/hashserve.sock
+DEBUG: Python function sstate_report_unihash finished
+DEBUG: Executing shell function sstate_create_package
+DEBUG: Shell function sstate_create_package finished
+DEBUG: Executing python function sstate_hardcode_path_unpack
+DEBUG: Python function sstate_hardcode_path_unpack finished
+DEBUG: Executing python function uninative_changeinterp
+DEBUG: Python function uninative_changeinterp finished
+DEBUG: Staging files from /home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/license-destdir to /home/lemageoire/fsl-community-bsp/build-openrex/tmp/deploy/licenses
+DEBUG: Python function sstate_task_postfunc finished

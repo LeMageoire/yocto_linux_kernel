@@ -1,0 +1,88 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/binutils/binutils-cross_2.38.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/gcc/gcc-cross_11.3.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/quilt/quilt-native_0.67.bb:do_populate_sysroot', '/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/bison/bison_3.8.2.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-devtools/patch/patch_2.7.6.bb:do_populate_sysroot', 'virtual:native:/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-extended/bc/bc_1.07.1.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['binutils-cross-arm', 'gcc-cross-arm', 'bison-native', 'bc-native', 'xz-native', 'flex-native', 'readline-native', 'libmpc-native', 'zstd-native', 'linux-libc-headers', 'gmp-native', 'mpfr-native', 'zlib-native', 'gnu-config-native', 'm4-native', 'ncurses-native']
+NOTE: Skipping as already exists in sysroot: ['quilt-native', 'kern-tools-native', 'patch-native', 'gettext-minimal-native', 'texinfo-dummy-native', 'libtool-native', 'attr-native']
+DEBUG: sed -e 's:^[^/]*/:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native/:g' /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/gcc-cross-arm/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/bison-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/gmp-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/gnu-config-native/fixmepath /home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/ncurses-native/fixmepath | xargs sed -i -e 's:FIXMESTAGINGDIRTARGET:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot:g; s:FIXMESTAGINGDIRHOST:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/recipe-sysroot-native:g' -e 's:FIXME_PSEUDO_SYSROOT:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/sysroots-components/x86_64/pseudo-native:g' -e 's:FIXME_HOSTTOOLS_DIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/hosttools:g' -e 's:FIXME_PKGDATA_DIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd:g' -e 's:FIXME_PSEUDO_LOCALSTATEDIR:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/pseudo/:g' -e 's:FIXME_LOGFIFO:/home/lemageoire/fsl-community-bsp/build-openrex/tmp/work/imx6qdlsabresd-poky-linux-gnueabi/linux-fslc/6.1.38+gitAUTOINC+085682f3fc-r0/temp/fifo.1240042:g'
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Searching for defconfig in paths:
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/poky
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/poky
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/poky
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/poky
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/imx6qdlsabresd
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/imx6qdlsabresd
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/imx6qdlsabresd
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/imx6qdlsabresd
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6dl-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6dl-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6dl-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6dl-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6dl-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6dl-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6dl-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6dl-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6q-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6q-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6q-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6q-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6q-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6q-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6q-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6q-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/mx6-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/imx-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/imx-generic-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/use-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/use-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/use-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/use-mainline-bsp
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/armv7a
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/armv7a
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/armv7a
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/armv7a
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/arm
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/arm
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/arm
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/arm
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale-3rdparty/recipes-kernel/linux/linux-fslc/
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc-6.1.38+gitAUTOINC+085682f3fc/
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/
+    /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/files/
+DEBUG: Executing shell function do_kernel_configme
+NOTE: do_kernel_metadata: for summary/debug, set KCONF_AUDIT_LEVEL > 0
+NOTE: kernel meta data summary for imx6qdlsabresd (standard):
+NOTE: ======================================================================
+NOTE: BSP entry point / definition: 
+NOTE: Fragments from SRC_URI: 
+NOTE: KERNEL_FEATURES: 
+NOTE: Final scc/cfg list: /home/lemageoire/fsl-community-bsp/sources/meta-freescale/recipes-kernel/linux/linux-fslc/defconfig   
+DEBUG: Shell function do_kernel_configme finished

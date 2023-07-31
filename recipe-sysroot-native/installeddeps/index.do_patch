@@ -1,0 +1,8 @@
+TaskDeps: do_kernel_metadata do_symlink_kernsrc do_unpack do_validate_branches do_kernel_checkout do_fetch
+attr-native
+gettext-minimal-native
+kern-tools-native
+libtool-native
+patch-native
+quilt-native
+texinfo-dummy-native

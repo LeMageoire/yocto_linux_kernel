@@ -1,0 +1,7 @@
+recipe-sysroot-native/sysroot-providers/bc-native
+recipe-sysroot-native/usr/bin/dc
+recipe-sysroot-native/usr/bin/bc
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/share/
+recipe-sysroot-native/usr/bin/
+recipe-sysroot-native/usr/

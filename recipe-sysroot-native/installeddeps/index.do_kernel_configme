@@ -1,0 +1,24 @@
+TaskDeps: do_patch do_kernel_metadata do_symlink_kernsrc do_unpack do_validate_branches do_kernel_checkout do_fetch
+attr-native
+bc-native
+binutils-cross-arm
+bison-native
+flex-native
+gcc-cross-arm
+gettext-minimal-native
+gmp-native
+gnu-config-native
+kern-tools-native
+libmpc-native
+libtool-native
+linux-libc-headers
+m4-native
+mpfr-native
+ncurses-native
+patch-native
+quilt-native
+readline-native
+texinfo-dummy-native
+xz-native
+zlib-native
+zstd-native

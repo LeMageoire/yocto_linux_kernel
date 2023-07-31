@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: cx24120 kernel module; DVB Frontend module for Conexant CX24120/CX24118 hardware
+SUMMARY:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: cx24120 kernel module
+RDEPENDS:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: kernel-module-cx24120
+SECTION: base
+PKG:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/cx24120.ko /etc/modules-load.d/cx24120.conf /etc/modprobe.d/cx24120.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24120.ko /etc/modules-load.d/cx24120.conf /etc/modprobe.d/cx24120.conf
+CONFFILES:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/cx24120.conf /etc/modprobe.d/cx24120.conf /etc/modules-load.d/cx24120.conf /etc/modprobe.d/cx24120.conf
+FILES_INFO:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/cx24120.ko": 18448}
+pkg_postinst:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-cx24120-6.1.38-fslc+g085682f3fc7e: 18448

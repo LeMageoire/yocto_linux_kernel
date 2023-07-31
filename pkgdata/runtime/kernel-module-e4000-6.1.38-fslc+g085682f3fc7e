@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: e4000 kernel module; Elonics E4000 silicon tuner driver
+SUMMARY:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: e4000 kernel module
+RDEPENDS:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: kernel-module-e4000
+SECTION: base
+PKG:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: kernel-module-e4000-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/e4000.ko /etc/modules-load.d/e4000.conf /etc/modprobe.d/e4000.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/e4000.ko /etc/modules-load.d/e4000.conf /etc/modprobe.d/e4000.conf
+CONFFILES:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/e4000.conf /etc/modprobe.d/e4000.conf /etc/modules-load.d/e4000.conf /etc/modprobe.d/e4000.conf
+FILES_INFO:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/e4000.ko": 15264}
+pkg_postinst:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-e4000-6.1.38-fslc+g085682f3fc7e: 15264

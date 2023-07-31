@@ -1,0 +1,244 @@
+#!/bin/bash
+
+usage()
+{
+    echo -e "Usage: `basename $0` [-v] -o <outfile> [hardware|nonhardware] [directory list]"
+
+    Processes a kernel tree and generates hardware / non-hardware buckets for
+    Kconfig values.
+
+    The divisions of the kernel subdirectories into hardware and non-hardware are
+    contained within this script. Edit it to modify/update the categorization.
+
+    Results can be found in /tmp/hw_bucket.txt.sorted and /tmp/non_hw_bucket.txt.sorted
+
+      -v: verbose output
+      -v -v: verbose debug output
+
+      nonhardware: generate non-hardware buckets
+      hardware: generate hardware buckets
+}
+
+if [ $# -lt 1 ]; then
+    usage
+    exit -1
+fi
+
+vlevel=0
+hardware=
+nonhardware=
+
+while [ $# -gt 0 ]; do
+        case "$1" in
+                -v|--v)
+                        verbose=t
+                        vlevel=`expr $vlevel + 1`
+                        silent=
+                        ;;
+                --check)
+                        check=t
+                        ;;
+                --clean)
+                        clean=t
+                        ;;
+                -o|--o)
+                        outfile=$2
+                        shift
+                        ;;
+                hardware)
+                        hardware=t
+                        ;;
+                nonhardware)
+                        nonhardware=t
+                        ;;
+                -h|--h)
+                        usage
+                        exit
+                        ;;
+                *)
+                        break
+                        ;;
+        esac
+        shift
+done
+
+if [ -z "$hardware" ] && [ -z "$nonhardware" ]; then
+    usage
+    exit 1
+fi
+
+if [ $# -ge 1 ]; then
+    input=$@
+fi
+
+if [ -n "$input" ]; then
+    if [ -n "$hardware" ] && [ -n "$nonhardware" ]; then
+        echo "ERROR. Directories cannot be passed with both 'hardware and 'nonhardware' specified"
+        exit 1
+    fi
+fi
+
+DEBUG()
+{
+    if [ "$vlevel" -gt 1 ]; then
+        echo "$@"
+    fi
+}
+
+LOG()
+{
+    if [ -n "$verbose" ]; then
+        echo "$@"
+    fi
+}
+
+function list_includes_item {
+    local list="$1"
+    local item="$2"
+    if [[ $list =~ (^|[[:space:]])"$item"($|[[:space:]]) ]] ; then
+        # yes, list include item
+        result=0
+    else
+        result=1
+    fi
+    return $result
+}
+
+# mm: is a mix of hardware and non-hardware. We override individual
+#     settings in the .cfg files
+HW_DIRS=" \
+arch \
+crypto/async_tx \
+drivers \
+mm \
+net/atm \
+net/iucv \
+net/can \
+net/nfc \
+net/nfc/hci \
+net/nfc/nci \
+sound \
+"
+
+NON_HW_DIRS=" \
+block \
+certs \
+crypto \
+drivers/accessibility \
+drivers/base \
+drivers/base/firmware_loader \
+drivers/base/regmap \
+drivers/base/test \
+drivers/block/zram \
+drivers/block/drbd \
+drivers/block/null_blk \
+drivers/connector \
+drivers/cpufreq \
+drivers/cpuidle \
+drivers/dma-buf \
+drivers/firewire \
+drivers/hv \
+drivers/net/hyperv \
+drivers/md \
+drivers/md/persistent-data \
+drivers/mtd/ubi \
+drivers/of \
+drivers/virtio \
+drivers/remoteproc \
+drivers/rpmsg \
+drivers/virt
+drivers/staging \
+drivers/staging/android \
+drivers/vhost \
+drivers/xen \
+fs \
+init \
+kernel \
+lib \
+net \
+security \
+samples \
+usr \
+virt \
+"
+
+DEBUG "hardware: $hardware"
+DEBUG "non-hardware: $nonhardware"
+DEBUG "setting outfile to: $outfile"
+
+do_hardware_buckets()
+{
+    dirs=$1
+
+    if [ -f /tmp/hw_bucket.txt ]; then
+	mv -f /tmp/hw_bucket.txt /tmp/hw_bucket.txt.old
+    fi
+
+    for d in $dirs; do
+        DEBUG "# Analyzing: $d"
+        sub_dirs=`find $d -type d`
+
+        # first the subdirs
+        if [ -n "$sub_dirs" ]; then
+            DEBUG "# Start Found subdirs"
+            DEBUG "$sub_dirs"
+            DEBUG "# End Found subdirs"
+            for sd in $sub_dirs; do
+                list_includes_item "$NON_HW_DIRS" "$sd"
+                if [ $? -ne 0 ]; then
+                    LOG "# hardware processing: $sd"
+                    find $sd -name '*Kconfig*' >> /tmp/hw_bucket.txt
+                else
+                    DEBUG "## Excluding '$sd' since it is non hardware"
+                fi
+            done
+        fi
+    done
+
+    cat /tmp/hw_bucket.txt | sort | uniq > /tmp/hw_bucket.txt.sorted
+}
+
+do_non_hardware_buckets()
+{
+    dirs=$1
+
+    mv -f /tmp/non_hw_bucket.txt /tmp/non_hw_bucket.txt.old
+
+    for d in $dirs; do
+        sub_dirs=`find $d -type d`
+        # first the subidrs
+        if [ -n "$sub_dirs" ]; then
+            DEBUG "found subdirs: $sub_dirs"
+            for sd in $sub_dirs; do
+                list_includes_item "$HW_DIRS" "$sd"
+                if [ $? -ne 0 ]; then
+                    LOG "# non-hardware processing: $sd"
+                    find $sd -name '*Kconfig*' >> /tmp/non_hw_bucket.txt
+                else
+                    DEBUG "## Excluding '$sd' since it is hardware"
+                fi
+            done
+        fi
+    done
+
+    cat /tmp/non_hw_bucket.txt | sort | uniq > /tmp/non_hw_bucket.txt.sorted
+}
+
+if [ -n "$hardware" ]; then
+    if [ -z "$input" ]; then
+        input=$HW_DIRS
+    fi
+
+    do_hardware_buckets "$input"
+
+    input=""
+fi
+
+if [ -n "$nonhardware" ]; then
+    if [ -z "$input" ]; then
+        input=$NON_HW_DIRS
+    fi
+
+    do_non_hardware_buckets "$input"
+fi
+

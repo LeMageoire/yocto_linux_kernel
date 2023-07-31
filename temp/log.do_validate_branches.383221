@@ -1,0 +1,8 @@
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are ['/home/lemageoire/fsl-community-bsp/sources/poky/meta/recipes-kernel/kern-tools/kern-tools-native_git.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['kern-tools-native']
+NOTE: Skipping as already exists in sysroot: []
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing shell function do_validate_branches
+NOTE: custom recipe is being built, forcing SRCREV to 085682f3fc7ed71fdafa987c96d76805086336a9
+DEBUG: Shell function do_validate_branches finished

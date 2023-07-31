@@ -1,0 +1,7 @@
+def create_source_date_epoch_stamp(d):
+    # Version: 1
+    source_date_epoch = oe.reproducible.get_source_date_epoch(d, d.getVar('S'))
+    oe.reproducible.epochfile_write(source_date_epoch, d.getVar('SDE_FILE'), d)
+
+create_source_date_epoch_stamp(d)
+

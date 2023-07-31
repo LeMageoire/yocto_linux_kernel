@@ -1,0 +1,10 @@
+OEOuthashBasic
+14
+linux-libc-headers: e1bc5200f551d1fefca54f92d6c9a04e6f2da64f1b8144b551047c3917b25d99
+SSTATE_PKGSPEC=sstate:linux-fslc:imx6qdlsabresd-poky-linux-gnueabi:6.1.38+gitAUTOINC+085682f3fc:r0:imx6qdlsabresd:10:
+task=populate_sysroot
+drwx                                                                                       .
+drwx                                                                                       ./sysroot-destdir
+drwx                                                                                       ./sysroot-destdir/sysroot-providers
+-rw-                   10 774de186e1cadf6143b41f52b781464f09073f9109f9593f1080e21a2db1083f ./sysroot-destdir/sysroot-providers/linux-fslc
+-rw-                   10 774de186e1cadf6143b41f52b781464f09073f9109f9593f1080e21a2db1083f ./sysroot-destdir/sysroot-providers/virtual_kernel

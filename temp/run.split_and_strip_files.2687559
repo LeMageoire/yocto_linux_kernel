@@ -1,0 +1,421 @@
+def split_and_strip_files(d):
+    import stat, errno
+    import subprocess
+
+    dvar = d.getVar('PKGD')
+    pn = d.getVar('PN')
+    hostos = d.getVar('HOST_OS')
+
+    oldcwd = os.getcwd()
+    os.chdir(dvar)
+
+    dv = package_debug_vars(d)
+
+    #
+    # First lets figure out all of the files we may have to process ... do this only once!
+    #
+    elffiles = {}
+    symlinks = {}
+    staticlibs = []
+    inodes = {}
+    libdir = os.path.abspath(dvar + os.sep + d.getVar("libdir"))
+    baselibdir = os.path.abspath(dvar + os.sep + d.getVar("base_libdir"))
+    skipfiles = (d.getVar("INHIBIT_PACKAGE_STRIP_FILES") or "").split()
+    if (d.getVar('INHIBIT_PACKAGE_STRIP') != '1' or \
+            d.getVar('INHIBIT_PACKAGE_DEBUG_SPLIT') != '1'):
+        checkelf = {}
+        checkelflinks = {}
+        for root, dirs, files in cpath.walk(dvar):
+            for f in files:
+                file = os.path.join(root, f)
+
+                # Skip debug files
+                if dv["append"] and file.endswith(dv["append"]):
+                    continue
+                if dv["dir"] and dv["dir"] in os.path.dirname(file[len(dvar):]):
+                    continue
+
+                if file in skipfiles:
+                    continue
+
+                if oe.package.is_static_lib(file):
+                    staticlibs.append(file)
+                    continue
+
+                try:
+                    ltarget = cpath.realpath(file, dvar, False)
+                    s = cpath.lstat(ltarget)
+                except OSError as e:
+                    (err, strerror) = e.args
+                    if err != errno.ENOENT:
+                        raise
+                    # Skip broken symlinks
+                    continue
+                if not s:
+                    continue
+                # Check its an executable
+                if (s[stat.ST_MODE] & stat.S_IXUSR) or (s[stat.ST_MODE] & stat.S_IXGRP) \
+                        or (s[stat.ST_MODE] & stat.S_IXOTH) \
+                        or ((file.startswith(libdir) or file.startswith(baselibdir)) \
+                        and (".so" in f or ".node" in f)) \
+                        or (f.startswith('vmlinux') or ".ko" in f):
+
+                    if cpath.islink(file):
+                        checkelflinks[file] = ltarget
+                        continue
+                    # Use a reference of device ID and inode number to identify files
+                    file_reference = "%d_%d" % (s.st_dev, s.st_ino)
+                    checkelf[file] = (file, file_reference)
+
+        results = oe.utils.multiprocess_launch(oe.package.is_elf, checkelflinks.values(), d)
+        results_map = {}
+        for (ltarget, elf_file) in results:
+            results_map[ltarget] = elf_file
+        for file in checkelflinks:
+            ltarget = checkelflinks[file]
+            # If it's a symlink, and points to an ELF file, we capture the readlink target
+            if results_map[ltarget]:
+                target = os.readlink(file)
+                #bb.note("Sym: %s (%d)" % (ltarget, results_map[ltarget]))
+                symlinks[file] = target
+
+        results = oe.utils.multiprocess_launch(oe.package.is_elf, checkelf.keys(), d)
+
+        # Sort results by file path. This ensures that the files are always
+        # processed in the same order, which is important to make sure builds
+        # are reproducible when dealing with hardlinks
+        results.sort(key=lambda x: x[0])
+
+        for (file, elf_file) in results:
+            # It's a file (or hardlink), not a link
+            # ...but is it ELF, and is it already stripped?
+            if elf_file & 1:
+                if elf_file & 2:
+                    if 'already-stripped' in (d.getVar('INSANE_SKIP:' + pn) or "").split():
+                        bb.note("Skipping file %s from %s for already-stripped QA test" % (file[len(dvar):], pn))
+                    else:
+                        msg = "File '%s' from %s was already stripped, this will prevent future debugging!" % (file[len(dvar):], pn)
+                        oe.qa.handle_error("already-stripped", msg, d)
+                    continue
+
+                # At this point we have an unstripped elf file. We need to:
+                #  a) Make sure any file we strip is not hardlinked to anything else outside this tree
+                #  b) Only strip any hardlinked file once (no races)
+                #  c) Track any hardlinks between files so that we can reconstruct matching debug file hardlinks
+
+                # Use a reference of device ID and inode number to identify files
+                file_reference = checkelf[file][1]
+                if file_reference in inodes:
+                    os.unlink(file)
+                    os.link(inodes[file_reference][0], file)
+                    inodes[file_reference].append(file)
+                else:
+                    inodes[file_reference] = [file]
+                    # break hardlink
+                    bb.utils.break_hardlinks(file)
+                    elffiles[file] = elf_file
+                # Modified the file so clear the cache
+                cpath.updatecache(file)
+
+    def strip_pkgd_prefix(f):
+        nonlocal dvar
+
+        if f.startswith(dvar):
+            return f[len(dvar):]
+
+        return f
+
+    #
+    # First lets process debug splitting
+    #
+    if (d.getVar('INHIBIT_PACKAGE_DEBUG_SPLIT') != '1'):
+        results = oe.utils.multiprocess_launch(splitdebuginfo, list(elffiles), d, extraargs=(dvar, dv, d))
+
+        if dv["srcdir"] and not hostos.startswith("mingw"):
+            if (d.getVar('PACKAGE_DEBUG_STATIC_SPLIT') == '1'):
+                results = oe.utils.multiprocess_launch(splitstaticdebuginfo, staticlibs, d, extraargs=(dvar, dv, d))
+            else:
+                for file in staticlibs:
+                    results.append( (file,source_info(file, d)) )
+
+        d.setVar("PKGDEBUGSOURCES", {strip_pkgd_prefix(f): sorted(s) for f, s in results})
+
+        sources = set()
+        for r in results:
+            sources.update(r[1])
+
+        # Hardlink our debug symbols to the other hardlink copies
+        for ref in inodes:
+            if len(inodes[ref]) == 1:
+                continue
+
+            target = inodes[ref][0][len(dvar):]
+            for file in inodes[ref][1:]:
+                src = file[len(dvar):]
+                dest = dv["libdir"] + os.path.dirname(src) + dv["dir"] + "/" + os.path.basename(target) + dv["append"]
+                fpath = dvar + dest
+                ftarget = dvar + dv["libdir"] + os.path.dirname(target) + dv["dir"] + "/" + os.path.basename(target) + dv["append"]
+                bb.utils.mkdirhier(os.path.dirname(fpath))
+                # Only one hardlink of separated debug info file in each directory
+                if not os.access(fpath, os.R_OK):
+                    #bb.note("Link %s -> %s" % (fpath, ftarget))
+                    os.link(ftarget, fpath)
+
+        # Create symlinks for all cases we were able to split symbols
+        for file in symlinks:
+            src = file[len(dvar):]
+            dest = dv["libdir"] + os.path.dirname(src) + dv["dir"] + "/" + os.path.basename(src) + dv["append"]
+            fpath = dvar + dest
+            # Skip it if the target doesn't exist
+            try:
+                s = os.stat(fpath)
+            except OSError as e:
+                (err, strerror) = e.args
+                if err != errno.ENOENT:
+                    raise
+                continue
+
+            ltarget = symlinks[file]
+            lpath = os.path.dirname(ltarget)
+            lbase = os.path.basename(ltarget)
+            ftarget = ""
+            if lpath and lpath != ".":
+                ftarget += lpath + dv["dir"] + "/"
+            ftarget += lbase + dv["append"]
+            if lpath.startswith(".."):
+                ftarget = os.path.join("..", ftarget)
+            bb.utils.mkdirhier(os.path.dirname(fpath))
+            #bb.note("Symlink %s -> %s" % (fpath, ftarget))
+            os.symlink(ftarget, fpath)
+
+        # Process the dv["srcdir"] if requested...
+        # This copies and places the referenced sources for later debugging...
+        copydebugsources(dv["srcdir"], sources, d)
+    #
+    # End of debug splitting
+    #
+
+    #
+    # Now lets go back over things and strip them
+    #
+    if (d.getVar('INHIBIT_PACKAGE_STRIP') != '1'):
+        strip = d.getVar("STRIP")
+        sfiles = []
+        for file in elffiles:
+            elf_file = int(elffiles[file])
+            #bb.note("Strip %s" % file)
+            sfiles.append((file, elf_file, strip))
+        if (d.getVar('PACKAGE_STRIP_STATIC') == '1' or d.getVar('PACKAGE_DEBUG_STATIC_SPLIT') == '1'):
+            for f in staticlibs:
+                sfiles.append((f, 16, strip))
+
+        oe.utils.multiprocess_launch(oe.package.runstrip, sfiles, d)
+
+    # Build "minidebuginfo" and reinject it back into the stripped binaries
+    if d.getVar('PACKAGE_MINIDEBUGINFO') == '1':
+        oe.utils.multiprocess_launch(inject_minidebuginfo, list(elffiles), d,
+                                     extraargs=(dvar, dv, d))
+
+    #
+    # End of strip
+    #
+    os.chdir(oldcwd)
+
+split_and_strip_files(d)
+
+def package_debug_vars(d):
+    # We default to '.debug' style
+    if d.getVar('PACKAGE_DEBUG_SPLIT_STYLE') == 'debug-file-directory':
+        # Single debug-file-directory style debug info
+        debug_vars = {
+            "append": ".debug",
+            "staticappend": "",
+            "dir": "",
+            "staticdir": "",
+            "libdir": "/usr/lib/debug",
+            "staticlibdir": "/usr/lib/debug-static",
+            "srcdir": "/usr/src/debug",
+        }
+    elif d.getVar('PACKAGE_DEBUG_SPLIT_STYLE') == 'debug-without-src':
+        # Original OE-core, a.k.a. ".debug", style debug info, but without sources in /usr/src/debug
+        debug_vars = {
+            "append": "",
+            "staticappend": "",
+            "dir": "/.debug",
+            "staticdir": "/.debug-static",
+            "libdir": "",
+            "staticlibdir": "",
+            "srcdir": "",
+        }
+    elif d.getVar('PACKAGE_DEBUG_SPLIT_STYLE') == 'debug-with-srcpkg':
+        debug_vars = {
+            "append": "",
+            "staticappend": "",
+            "dir": "/.debug",
+            "staticdir": "/.debug-static",
+            "libdir": "",
+            "staticlibdir": "",
+            "srcdir": "/usr/src/debug",
+        }
+    else:
+        # Original OE-core, a.k.a. ".debug", style debug info
+        debug_vars = {
+            "append": "",
+            "staticappend": "",
+            "dir": "/.debug",
+            "staticdir": "/.debug-static",
+            "libdir": "",
+            "staticlibdir": "",
+            "srcdir": "/usr/src/debug",
+        }
+
+    return debug_vars
+
+def copydebugsources(debugsrcdir, sources, d):
+    # The debug src information written out to sourcefile is further processed
+    # and copied to the destination here.
+
+    import stat
+    import subprocess
+
+    if debugsrcdir and sources:
+        sourcefile = d.expand("${WORKDIR}/debugsources.list")
+        bb.utils.remove(sourcefile)
+
+        # filenames are null-separated - this is an artefact of the previous use
+        # of rpm's debugedit, which was writing them out that way, and the code elsewhere
+        # is still assuming that.
+        debuglistoutput = '\0'.join(sources) + '\0'
+        with open(sourcefile, 'a') as sf:
+           sf.write(debuglistoutput)
+
+        dvar = d.getVar('PKGD')
+        strip = d.getVar("STRIP")
+        objcopy = d.getVar("OBJCOPY")
+        workdir = d.getVar("WORKDIR")
+        sdir = d.getVar("S")
+        sparentdir = os.path.dirname(os.path.dirname(sdir))
+        sbasedir = os.path.basename(os.path.dirname(sdir)) + "/" + os.path.basename(sdir)
+        workparentdir = os.path.dirname(os.path.dirname(workdir))
+        workbasedir = os.path.basename(os.path.dirname(workdir)) + "/" + os.path.basename(workdir)
+
+        # If S isnt based on WORKDIR we can infer our sources are located elsewhere,
+        # e.g. using externalsrc; use S as base for our dirs
+        if workdir in sdir or 'work-shared' in sdir:
+            basedir = workbasedir
+            parentdir = workparentdir
+        else:
+            basedir = sbasedir
+            parentdir = sparentdir
+
+        # If build path exists in sourcefile, it means toolchain did not use
+        # -fdebug-prefix-map to compile
+        if checkbuildpath(sourcefile, d):
+            localsrc_prefix = parentdir + "/"
+        else:
+            localsrc_prefix = "/usr/src/debug/"
+
+        nosuchdir = []
+        basepath = dvar
+        for p in debugsrcdir.split("/"):
+            basepath = basepath + "/" + p
+            if not cpath.exists(basepath):
+                nosuchdir.append(basepath)
+        bb.utils.mkdirhier(basepath)
+        cpath.updatecache(basepath)
+
+        # Ignore files from the recipe sysroots (target and native)
+        processdebugsrc =  "LC_ALL=C ; sort -z -u '%s' | egrep -v -z '((<internal>|<built-in>)$|/.*recipe-sysroot.*/)' | "
+        # We need to ignore files that are not actually ours
+        # we do this by only paying attention to items from this package
+        processdebugsrc += "fgrep -zw '%s' | "
+        # Remove prefix in the source paths
+        processdebugsrc += "sed 's#%s##g' | "
+        processdebugsrc += "(cd '%s' ; cpio -pd0mlL --no-preserve-owner '%s%s' 2>/dev/null)"
+
+        cmd = processdebugsrc % (sourcefile, basedir, localsrc_prefix, parentdir, dvar, debugsrcdir)
+        try:
+            subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+        except subprocess.CalledProcessError:
+            # Can "fail" if internal headers/transient sources are attempted
+            pass
+
+        # cpio seems to have a bug with -lL together and symbolic links are just copied, not dereferenced.
+        # Work around this by manually finding and copying any symbolic links that made it through.
+        cmd = "find %s%s -type l -print0 -delete | sed s#%s%s/##g | (cd '%s' ; cpio -pd0mL --no-preserve-owner '%s%s')" % \
+                (dvar, debugsrcdir, dvar, debugsrcdir, parentdir, dvar, debugsrcdir)
+        subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+
+
+        # debugsources.list may be polluted from the host if we used externalsrc,
+        # cpio uses copy-pass and may have just created a directory structure
+        # matching the one from the host, if thats the case move those files to
+        # debugsrcdir to avoid host contamination.
+        # Empty dir structure will be deleted in the next step.
+
+        # Same check as above for externalsrc
+        if workdir not in sdir:
+            if os.path.exists(dvar + debugsrcdir + sdir):
+                # Special case for /build since we need to move into
+                # /usr/src/debug/build so rename sdir to build.build
+                if sdir == "/build" or sdir.find("/build/") == 0:
+                    cmd = "mv %s%s%s %s%s%s" % (dvar, debugsrcdir, "/build", dvar, debugsrcdir, "/build.build")
+                    subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+                    sdir = sdir.replace("/build", "/build.build", 1)
+
+                cmd = "mv %s%s%s/* %s%s" % (dvar, debugsrcdir, sdir, dvar,debugsrcdir)
+                subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+
+        # The copy by cpio may have resulted in some empty directories!  Remove these
+        cmd = "find %s%s -empty -type d -delete" % (dvar, debugsrcdir)
+        subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+
+        # Also remove debugsrcdir if its empty
+        for p in nosuchdir[::-1]:
+            if os.path.exists(p) and not os.listdir(p):
+                os.rmdir(p)
+
+#
+# Package data handling routines
+#
+
+def source_info(file, d, fatal=True):
+    import subprocess
+
+    cmd = ["dwarfsrcfiles", file]
+    try:
+        output = subprocess.check_output(cmd, universal_newlines=True, stderr=subprocess.STDOUT)
+        retval = 0
+    except subprocess.CalledProcessError as exc:
+        output = exc.output
+        retval = exc.returncode
+
+    # 255 means a specific file wasn't fully parsed to get the debug file list, which is not a fatal failure
+    if retval != 0 and retval != 255:
+        msg = "dwarfsrcfiles failed with exit code %s (cmd was %s)%s" % (retval, cmd, ":\n%s" % output if output else "")
+        if fatal:
+            bb.fatal(msg)
+        bb.note(msg)
+
+    debugsources = parse_debugsources_from_dwarfsrcfiles_output(output)
+
+    return list(debugsources)
+
+def parse_debugsources_from_dwarfsrcfiles_output(dwarfsrcfiles_output):
+    debugfiles = {}
+
+    for line in dwarfsrcfiles_output.splitlines():
+        if line.startswith("\t"):
+            debugfiles[os.path.normpath(line.split()[0])] = ""
+
+    return debugfiles.keys()
+
+def checkbuildpath(file, d):
+    tmpdir = d.getVar('TMPDIR')
+    with open(file) as f:
+        file_content = f.read()
+        if tmpdir in file_content:
+            return True
+
+    return False
+

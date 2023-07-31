@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: gadgetfs kernel module; USB Gadget filesystem
+SUMMARY:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: gadgetfs kernel module
+RDEPENDS:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: kernel-module-gadgetfs
+SECTION: base
+PKG:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/.debug/gadgetfs.ko /etc/modules-load.d/gadgetfs.conf /etc/modprobe.d/gadgetfs.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/gadgetfs.ko /etc/modules-load.d/gadgetfs.conf /etc/modprobe.d/gadgetfs.conf
+CONFFILES:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/gadgetfs.conf /etc/modprobe.d/gadgetfs.conf /etc/modules-load.d/gadgetfs.conf /etc/modprobe.d/gadgetfs.conf
+FILES_INFO:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/usb/gadget/legacy/gadgetfs.ko": 33116}
+pkg_postinst:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-gadgetfs-6.1.38-fslc+g085682f3fc7e: 33116

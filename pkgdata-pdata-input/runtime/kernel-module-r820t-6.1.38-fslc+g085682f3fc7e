@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: r820t kernel module; Rafael Micro r820t silicon tuner driver
+SUMMARY:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: r820t kernel module
+RDEPENDS:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: kernel-module-r820t
+SECTION: base
+PKG:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: kernel-module-r820t-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/.debug/r820t.ko /etc/modules-load.d/r820t.conf /etc/modprobe.d/r820t.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/r820t.ko /etc/modules-load.d/r820t.conf /etc/modprobe.d/r820t.conf
+CONFFILES:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/r820t.conf /etc/modprobe.d/r820t.conf /etc/modules-load.d/r820t.conf /etc/modprobe.d/r820t.conf
+FILES_INFO:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/tuners/r820t.ko": 25556}
+pkg_postinst:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-r820t-6.1.38-fslc+g085682f3fc7e: 25556

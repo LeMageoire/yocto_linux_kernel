@@ -1,0 +1,12 @@
+recipe-sysroot-native/sysroot-providers/libmicrohttpd-native
+recipe-sysroot-native/usr/include/microhttpd.h
+recipe-sysroot-native/usr/lib/libmicrohttpd.so.12.60.0
+recipe-sysroot-native/usr/lib/libmicrohttpd.so.12
+recipe-sysroot-native/usr/lib/libmicrohttpd.so
+recipe-sysroot-native/usr/lib/pkgconfig/libmicrohttpd.pc
+recipe-sysroot-native/usr/lib/pkgconfig/
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/include/
+recipe-sysroot-native/usr/share/
+recipe-sysroot-native/usr/lib/
+recipe-sysroot-native/usr/

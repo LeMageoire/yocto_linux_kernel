@@ -1,0 +1,23 @@
+#!/bin/sh
+# Expected to be called as: depmodwrapper -a KERNEL_VERSION
+if [ "$1" != "-a" -o "$2" != "-b" ]; then
+    echo "Usage: depmodwrapper -a -b rootfs KERNEL_VERSION" >&2
+    exit 1
+fi
+
+kernelabi=""
+if [ -r "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd/kernel-depmod/kernel-abiversion" ]; then
+    kernelabi=$(cat "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd/kernel-depmod/kernel-abiversion")
+fi
+
+if [ ! -e "$3/lib/depmod.d/exclude.conf" ]; then
+    mkdir -p "$3/lib/depmod.d"
+    echo "exclude .debug" > "$3/lib/depmod.d/exclude.conf"
+fi
+
+if [ ! -r /home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd/kernel-depmod/System.map-$4 ] || [ "$kernelabi" != "$4" ]; then
+    echo "Unable to read: /home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd/kernel-depmod/System.map-$4" >&2
+    exec env depmod -C "$3/lib/depmod.d" "$1" "$2" "$3" "$4"
+else
+    exec env depmod -C "$3/lib/depmod.d" "$1" "$2" "$3" -F "/home/lemageoire/fsl-community-bsp/build-openrex/tmp/pkgdata/imx6qdlsabresd/kernel-depmod/System.map-$4" "$4"
+fi

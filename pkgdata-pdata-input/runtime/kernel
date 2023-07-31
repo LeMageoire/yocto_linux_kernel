@@ -1,0 +1,14 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION: Linux kernel based on mainline kernel used by FSL Community BSP in order to provide support for some backported features and fixes, or because it was applied in linux-next and takes some time to become part of a stable version, or because it is not applicable for upstreaming.
+SUMMARY: FSL Community BSP Linux mainline based kernel with backported features and fixes
+RDEPENDS:kernel: kernel-base (= 6.1.38+git0+085682f3fc-r0)
+SECTION: base
+PKG:kernel: kernel
+ALLOW_EMPTY:kernel: 1
+FILES_INFO:kernel: {}
+PKGSIZE:kernel: 0

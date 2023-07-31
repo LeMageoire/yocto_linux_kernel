@@ -1,0 +1,13 @@
+recipe-sysroot-native/sysroot-providers/libffi-native
+recipe-sysroot-native/usr/include/ffitarget.h
+recipe-sysroot-native/usr/include/ffi.h
+recipe-sysroot-native/usr/lib/libffi.so
+recipe-sysroot-native/usr/lib/libffi.so.8
+recipe-sysroot-native/usr/lib/libffi.so.8.1.2
+recipe-sysroot-native/usr/lib/pkgconfig/libffi.pc
+recipe-sysroot-native/usr/lib/pkgconfig/
+recipe-sysroot-native/sysroot-providers/
+recipe-sysroot-native/usr/include/
+recipe-sysroot-native/usr/share/
+recipe-sysroot-native/usr/lib/
+recipe-sysroot-native/usr/

@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: isl6405 kernel module; Driver for lnb supply and control ic isl6405
+SUMMARY:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: isl6405 kernel module
+RDEPENDS:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: kernel-module-isl6405
+SECTION: base
+PKG:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/isl6405.ko /etc/modules-load.d/isl6405.conf /etc/modprobe.d/isl6405.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6405.ko /etc/modules-load.d/isl6405.conf /etc/modprobe.d/isl6405.conf
+CONFFILES:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/isl6405.conf /etc/modprobe.d/isl6405.conf /etc/modules-load.d/isl6405.conf /etc/modprobe.d/isl6405.conf
+FILES_INFO:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/isl6405.ko": 5204}
+pkg_postinst:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-isl6405-6.1.38-fslc+g085682f3fc7e: 5204

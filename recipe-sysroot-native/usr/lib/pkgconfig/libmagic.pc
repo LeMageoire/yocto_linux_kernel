@@ -1,0 +1,10 @@
+prefix=${pcfiledir}/../../../usr
+exec_prefix=${pcfiledir}/../../../usr
+libdir=${pcfiledir}/../../../usr/lib
+includedir=${pcfiledir}/../../../usr/include
+
+Name: libmagic
+Description: Magic number recognition library
+Version: 5.41
+Libs: -L${libdir} -lmagic
+Libs.private: -llzma -lbz2 -lz 

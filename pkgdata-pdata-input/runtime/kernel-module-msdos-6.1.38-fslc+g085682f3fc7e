@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: msdos kernel module; MS-DOS filesystem support
+SUMMARY:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: msdos kernel module
+RDEPENDS:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: kernel-module-msdos
+SECTION: base
+PKG:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: kernel-module-msdos-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/.debug/msdos.ko /etc/modules-load.d/msdos.conf /etc/modprobe.d/msdos.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/msdos.ko /etc/modules-load.d/msdos.conf /etc/modprobe.d/msdos.conf
+CONFFILES:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/msdos.conf /etc/modprobe.d/msdos.conf /etc/modules-load.d/msdos.conf /etc/modprobe.d/msdos.conf
+FILES_INFO:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/fs/fat/msdos.ko": 16836}
+pkg_postinst:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-msdos-6.1.38-fslc+g085682f3fc7e: 16836

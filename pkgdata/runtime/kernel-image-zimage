@@ -1,0 +1,17 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc
+PKGR: r0@EXTENDPRAUTO@
+LICENSE: GPL-2.0-only
+DESCRIPTION: Linux kernel based on mainline kernel used by FSL Community BSP in order to provide support for some backported features and fixes, or because it was applied in linux-next and takes some time to become part of a stable version, or because it is not applicable for upstreaming.
+SUMMARY: FSL Community BSP Linux mainline based kernel with backported features and fixes
+RPROVIDES:kernel-image-zimage:  kernel-image-zimage (=6.1.38+git@PRSERV_PV_AUTOINC@+085682f3fc)
+SECTION: base
+PKG:kernel-image-zimage: kernel-image-zimage-6.1.38-fslc+g085682f3fc7e
+ALLOW_EMPTY:kernel-image-zimage: 1
+FILES:kernel-image-zimage: /boot/zImage-6.1.38-fslc+g085682f3fc7e /boot/zImage
+FILES_INFO:kernel-image-zimage: {"/boot/zImage-6.1.38-fslc+g085682f3fc7e": 10565544}
+pkg_postinst:kernel-image-zimage: set -e\nset +e\nif [ -n "$D" ]; then\n    ln -sf zImage-6.1.38-fslc+g085682f3fc7e $D/boot/zImage > /dev/null 2>&1\nelse\n    ln -sf zImage-6.1.38-fslc+g085682f3fc7e boot/zImage > /dev/null 2>&1\n    if [ $? -ne 0 ]; then\n        echo "Filesystem on boot/ doesn't support symlinks, falling back to copied image (zImage)."\n        install -m 0644 boot/zImage-6.1.38-fslc+g085682f3fc7e boot/zImage\n    fi\nfi\nset -e\n
+pkg_postrm:kernel-image-zimage: set -e\nset +e\nif [ -f "boot/zImage" -o -L "boot/zImage" ]; then\n    rm -f boot/zImage  > /dev/null 2>&1\nfi\nset -e\n
+PKGSIZE:kernel-image-zimage: 10565544

@@ -1,0 +1,18 @@
+PN: linux-fslc
+PV: 6.1.38+gitAUTOINC+085682f3fc
+PR: r0
+PKGV: 6.1.38+git0+085682f3fc
+PKGR: r0
+LICENSE: GPL-2.0-only
+DESCRIPTION:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: tda10048 kernel module; NXP TDA10048HN DVB-T Demodulator driver
+SUMMARY:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: tda10048 kernel module
+RDEPENDS:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: kernel-6.1.38-fslc+g085682f3fc7e
+RPROVIDES:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: kernel-module-tda10048
+SECTION: base
+PKG:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e
+FILES:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/.debug/tda10048.ko /etc/modules-load.d/tda10048.conf /etc/modprobe.d/tda10048.conf /lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10048.ko /etc/modules-load.d/tda10048.conf /etc/modprobe.d/tda10048.conf
+CONFFILES:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: None /etc/modules-load.d/tda10048.conf /etc/modprobe.d/tda10048.conf /etc/modules-load.d/tda10048.conf /etc/modprobe.d/tda10048.conf
+FILES_INFO:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: {"/lib/modules/6.1.38-fslc+g085682f3fc7e/kernel/drivers/media/dvb-frontends/tda10048.ko": 17112}
+pkg_postinst:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\t# image.bbclass will call depmodwrapper after everything is installed,\n\t# no need to do it here as well\n\t:\nfi\n\n
+pkg_postrm:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: #!/bin/sh\nset -e\nif [ -z "$D" ]; then\n\tdepmod -a 6.1.38-fslc+g085682f3fc7e\nelse\n\tdepmodwrapper -a -b $D 6.1.38-fslc+g085682f3fc7e\nfi\n\n
+PKGSIZE:kernel-module-tda10048-6.1.38-fslc+g085682f3fc7e: 17112
